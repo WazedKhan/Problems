@@ -1,8 +1,12 @@
-# values = list(map(int, input().rstrip().split()))
+"""
+Link of the problem set in HackerRank
+https://www.hackerrank.com/challenges/bon-appetit
 
+"""
+
+# values = list(map(int, input().rstrip().split()))
 n = 4
 k = 1
-
 bill = [3, 10, 2, 9]  #list(map(int, input().rstrip().split()))
 b = 7  #int(input().strip().split())
 
