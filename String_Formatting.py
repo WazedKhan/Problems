@@ -1,9 +1,10 @@
-def DecimalOctal(num, divisor):
-    octal = ''
-    while (num != 0):
-        octal += str(num % divisor)
-        num = int(num / divisor)
-    print((octal)[::-1])
-    
+from turtle import width
 
-DecimalOctal(127, 2)
+
+def print_formatted(number):
+    width = len("{0:b}".format(number))
+    for i in range(1,number+1):
+        print("{0:{width}d} {0:{width}o} {0:{width}X} {0:{width}b}".format(i,width=width))
+        
+
+print_formatted(17)
