@@ -1,6 +1,3 @@
-from multiprocessing import Semaphore
-
-
 sentance = 'aWESOME is cODING'.swapcase()
 
 sentance = sentance.split()[::-1]
