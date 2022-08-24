@@ -1,24 +1,18 @@
-def isPowerOfThree(n):
-    pThree = 3
-    hightest = 0
-    while pThree <= n:
-        hightest += 1
-        pThree *= 3
-    return hightest
-
 def checkPowersOfThree(n):
-    check_value, value, powers = n, 0, []
-    while n > 0:
-        squire = isPowerOfThree(n)
-        if squire not in powers:
-            value += (3**squire)
-            print('n= ',n, 'squire= 3^',squire, 'value= ', value)
-            powers.append(squire)
-            n -= 3**squire
-        else:
-            n -= 3**squire
-            continue
+    pThree = 3
+    h_power = 0
+    while pThree <= n:
+        h_power += 1
+        pThree *= 3
+
+    check_value, value = n, 0
+
+    for i in range(h_power+1, 0, -1):
+        if (3**(i-1)) <= n:
+            value += (3**(i-1))
+            n -= (3**(i-1))
     return value == check_value
 
 
-print(checkPowersOfThree(91))
+
+print(checkPowersOfThree(21))
