@@ -1,9 +1,9 @@
 def checkPowersOfThree(n):
-    pThree = 3
-    h_power = 0
-    while pThree <= n:
-        h_power += 1
-        pThree *= 3
+    # pThree = 3
+    h_power = 15
+    # while pThree <= n:
+    #     h_power += 1
+    #     pThree *= 3
 
     check_value, value = n, 0
 
