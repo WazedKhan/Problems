@@ -1,27 +1,15 @@
-from itertools import combinations
-
-def checkTriples(luck):
-    if int(luck[1]) % int(luck[0]) == 0 and int(luck[2]) % int(luck[1]) == 0:
-        return True
-    else: return False
-
 def solution(l):
-    num = ''
-    for item in l:
-        num += str(item)
-
-    combi = combinations(num, 3)
-    combi = [' '.join(i) for i in combi]
-
+    sublist = [0] * len(l)
     count = 0
+    for i in range(0,len(l)):
+        for j in range(0, i):
+            if l[i] % l[j] == 0:
+                sublist[i] = sublist[i] + 1
+                count += sublist[j]
 
-    for i in combi:
-        val = "".join(i.split())
-        if checkTriples(val) == True:
-            count += 1
     return count
 
 
-l = [1, 1, 1]
+l = [1, 2, 3, 4, 5, 6,7,8,9,10]
 
 print(solution(l))
