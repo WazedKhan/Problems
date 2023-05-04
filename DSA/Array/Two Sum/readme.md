@@ -9,8 +9,7 @@ You may assume that each input would have exactly one solution, and you may not 
 
 You can return the answer in any order.
 
-
-````
+```
 Example 1:
 Input: nums = [2,7,11,15], target = 9
 Output: [0,1]
@@ -23,8 +22,7 @@ Output: [1,2]
 Example 3:
 Input: nums = [3,3], target = 6
 Output: [0,1]
-````
-
+```
 
 </p>
 
@@ -41,4 +39,10 @@ Output: [0,1]
 
 ## Pseudocode
 
-1.
+```
+1. Loop-1 through from 0 index to len(nums)
+2. Store the loop-1 value from step-1 in variable 'i'
+3. A again go through another loop-2 and store the loop-2 value in variable 'j'
+4. In loop-2 check if 'i'+'j' is equal to 'target'
+5. If match return the index no of 'i' and 'j'
+```
