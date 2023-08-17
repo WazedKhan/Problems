@@ -1,3 +1,5 @@
+link: https://www.hackerrank.com/challenges/hackerland-radio-transmitters/problem?isFullScreen=true&utm_campaign=challenge-recommendation&utm_medium=email&utm_source=24-hour-campaign
+
 def hackerLandRadioTransmitters(x: list, k):
     coverage = k + k
     house_number = len(range(min(x), max(x) + 1))
