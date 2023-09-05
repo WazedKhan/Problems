@@ -43,4 +43,9 @@ Example 2:
 
 ## Pseudocode
 
-- 
+- `x` == 1
+- if first element then stor it in a nested list
+- if 2nd element `-` 1st element is `x`
+- keep checking if `current_element + next_element` - `current_element` == `x`
+- if `x` append in the `current_nested_list` if not `x` then create new nested list
+- at the starting of `new_nested_list` append the `current_element`
