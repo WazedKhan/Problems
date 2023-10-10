@@ -43,6 +43,7 @@ my_linked_list.push(3)
 
 # Print the linked list to verify the insertions
 # It should print: 3 -> 2 -> 1
+
 current_node = my_linked_list.head
 while current_node:
     print(current_node.data, end=" -> ")
