@@ -38,4 +38,4 @@ class Solution:
 # Example usage
 height = [1, 8, 6, 2, 5, 4, 8, 3, 7]
 solve = Solution().maxArea(height=height)
-print(solve)  # Output should be 49
+print(solve)  # Output should be 49 recap
