@@ -1,6 +1,7 @@
 # traversing a linked list and inserting at the end
 # source: Hacker Rank Traversing: https://www.hackerrank.com/challenges/print-the-elements-of-a-linked-list/problem?isFullScreen=true
-# source: Hacker Rank Inserting: https://www.hackerrank.com/challenges/insert-a-node-at-the-tail-of-a-linked-list/problem?isFullScreen=true
+# source: Hacker Rank Inserting at the end: https://www.hackerrank.com/challenges/insert-a-node-at-the-tail-of-a-linked-list/problem?isFullScreen=true
+# source: Hacker Rank Inserting at the beginning: https://www.hackerrank.com/challenges/insert-a-node-at-the-head-of-a-linked-list/problem?isFullScreen=true
 
 
 class Node:
@@ -36,8 +37,12 @@ class LinkedList:
         """
         inserts value at the start of the linked list
         """
+        # create a new node for given value
         new_node = Node(val)
+        # set next node as the self head, basically we are merging self.head at the end of the new_node
+        # in this way new node always will be the first node of the linked list
         new_node.next = self.head
+        # now replace the self. head with new node as new node has the self.head merged at its end
         self.head = new_node
 
     def display(self):
