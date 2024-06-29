@@ -13,7 +13,10 @@ class LinkedList:
     def __init__(self) -> None:
         self.head = None
 
-    def append_node(self, val):
+    def insert_at_end(self, val):
+        """
+        inserts value at end of the linked list
+        """
         # Create a new node for the given value
         new_node = Node(val)
         # Check if the list is empty (i.e., if the head is None)
@@ -29,6 +32,14 @@ class LinkedList:
             # Once at the end of the list, set the next of the last node to the new node
             current.next = new_node
 
+    def insert_at_beginning(self, val):
+        """
+        inserts value at the start of the linked list
+        """
+        new_node = Node(val)
+        new_node.next = self.head
+        self.head = new_node
+
     def display(self):
         # Start from the head of the list
         current = self.head
@@ -42,7 +53,7 @@ class LinkedList:
 
 # Example usage:
 linked_list = LinkedList()
-linked_list.append_node(1)
-linked_list.append_node(2)
-linked_list.append_node(3)
+linked_list.insert_at_beginning(1)
+linked_list.insert_at_beginning(2)
+linked_list.insert_at_beginning(3)
 linked_list.display()  # Output: 1 -> 2 -> 3 -> None
