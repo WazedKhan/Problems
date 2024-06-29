@@ -61,4 +61,4 @@ linked_list = LinkedList()
 linked_list.insert_at_beginning(1)
 linked_list.insert_at_beginning(2)
 linked_list.insert_at_beginning(3)
-linked_list.display()  # Output: 1 -> 2 -> 3 -> None
+linked_list.display()
