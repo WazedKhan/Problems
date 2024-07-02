@@ -1,5 +1,6 @@
 from collections import defaultdict
 
+
 def singleNumber(nums):
     counter = defaultdict(int)
     for letter in nums:
@@ -9,4 +10,4 @@ def singleNumber(nums):
             return key
 
 
-print(singleNumber(nums = [1,2,1,3,2,5]))
+print(singleNumber(nums=[1, 2, 1, 3, 2, 5]))
