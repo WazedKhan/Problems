@@ -17,25 +17,12 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: "3.12.3"
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-
-    # - name: Run Black Formatter on Updated File
-    #   run: |
-    #     changed_files=$(git diff --name-only --diff-filter=ACMRTUXB HEAD^1 HEAD | grep -E '\.py$' | xargs)
-    #     if [ -n "$changed_files" ]; then
-    #       black $changed_files
-    #     else
-    #       echo "No Python files changed."
-    #     fi
-
-    # - name: Run linters
-    #   run: |
-    #     black --check tests/
   
     - name: Run tests
       run: |
