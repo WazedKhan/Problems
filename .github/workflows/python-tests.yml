@@ -24,6 +24,25 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
+    - name: Run Black Formatter on Updated File
+      run: |
+        changed_files=$(git diff --name-only --diff-filter=ACMRTUXB HEAD^1 HEAD | grep -E '\.py$' | xargs)
+        if [ -n "$changed_files" ]; then
+          black $changed_files
+        else
+          echo "No Python files changed."
+        fi
+
+    - name: Run linters
+      run: |
+        black --check tests/
+  
     - name: Run tests
       run: |
         pytest
+
+    - name: Upload coverage report
+      uses: actions/upload-artifact@v2
+      with:
+        name: coverage-report
+        path: coverage.xml
