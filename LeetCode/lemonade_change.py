@@ -1,4 +1,3 @@
-import re
 from typing import List
 
 
@@ -38,6 +37,30 @@ class Solution:
                         cash_drawer.append(bill)
                     else:
                         return False
+        return True
+
+    def lemonade_change(self, bills: List):
+        five_counter = 0
+        ten_counter = 0
+        for bill in bills:
+            if bill == 5:
+                five_counter += 1
+
+            elif bill == 10:
+                if five_counter > 0:
+                    ten_counter += 1
+                    five_counter -= 1
+                else:
+                    return False
+
+            else:
+                if ten_counter > 0 and five_counter > 0:
+                    ten_counter -= 1
+                    five_counter -= 1
+                elif ten_counter <= 0 and five_counter >= 3:
+                    five_counter -= 3
+                else:
+                    return False
 
         return True
 
@@ -46,5 +69,5 @@ bills = [5, 5, 5, 10, 20]  # True
 bills = [5, 5, 10, 10, 20]  # False
 bills = [5, 5, 10, 20, 5, 5, 5, 5, 5, 5, 5, 5, 5, 10, 5, 5, 20, 5, 20, 5]  # True
 bills = [5, 5, 10, 20, 5, 5, 5, 5, 5, 5, 5, 5, 5, 10, 5, 5, 20, 5, 20]  # True
-solution = Solution().lemonadeChange(bills=bills)
+solution = Solution().lemonade_change(bills=bills)
 print(f"Can sell lemonade with bills: {bills}: {solution}")
