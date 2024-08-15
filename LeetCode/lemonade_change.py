@@ -39,35 +39,55 @@ class Solution:
                         return False
         return True
 
-    def lemonade_change(self, bills: List):
+    def lemonade_change(self, bills: List[int]) -> bool:
+        """
+        Determines if we can provide correct change to each customer in line
+        using a limited number of $5 and $10 bills.
+
+        Args:
+            bills (List[int]): A list of bills each customer provides (either $5, $10, or $20).
+
+        Returns:
+            bool: True if it's possible to provide the correct change to each customer, False otherwise.
+        """
+
+        # Counters for the number of $5 and $10 bills
         five_counter = 0
         ten_counter = 0
+
+        # Iterate over each bill in the provided bills
         for bill in bills:
             if bill == 5:
+                # Customer pays with a $5 bill
+                # Increase the count of $5 bills
                 five_counter += 1
 
             elif bill == 10:
+                # Customer pays with a $10 bill
                 if five_counter > 0:
+                    # If we have a $5 bill, we can give change
                     ten_counter += 1
                     five_counter -= 1
                 else:
+                    # No $5 bill to give as change, return False
                     return False
 
-            else:
+            else:  # bill == 20
+                # Customer pays with a $20 bill
                 if ten_counter > 0 and five_counter > 0:
+                    # If we have a $10 and a $5 bill, give one of each as change
                     ten_counter -= 1
                     five_counter -= 1
                 elif ten_counter <= 0 and five_counter >= 3:
+                    # If no $10 bill but at least three $5 bills, give three $5 bills as change
                     five_counter -= 3
                 else:
+                    # Not enough change to give, return False
                     return False
 
+        # If we successfully give change to every customer, return True
         return True
 
 
-bills = [5, 5, 5, 10, 20]  # True
-bills = [5, 5, 10, 10, 20]  # False
-bills = [5, 5, 10, 20, 5, 5, 5, 5, 5, 5, 5, 5, 5, 10, 5, 5, 20, 5, 20, 5]  # True
-bills = [5, 5, 10, 20, 5, 5, 5, 5, 5, 5, 5, 5, 5, 10, 5, 5, 20, 5, 20]  # True
-solution = Solution().lemonade_change(bills=bills)
-print(f"Can sell lemonade with bills: {bills}: {solution}")
+# install all the requirements: pip install -r requirement.txt
+# to check it run: pytest
