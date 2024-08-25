@@ -1,5 +1,13 @@
+# Python-related files
+__pycache__/
+env
+.env
+.vscode/
+
+# Test-related files
+coverage/
+.coverage
+
+# Specific test files
 test.py
 timeComplexity.py
-__pycache__
-.vscode
-env
