@@ -11,22 +11,42 @@ root.left = Node(3)
 root.right = Node(4)
 root.left.left = Node(5)
 
-# Breadth-First Search
-# 1. Level order traversal
+
+# root.left.right = Node(8)
 
 
-def breadth_first_search(root: Node):
+def print_tree():
+    print()
+    tree = """
+                2
+            3       4
+        5
+
+    """
+    print(tree)
+
+
+# Pre-order DFS: Root, Left, Right
+def pre_order_dfs(root: Node) -> None:
+    print_tree()
+    print("PRE ORDER DFS: ")
     if root is None:
         return
 
-    queue = [root]
-    while queue:
-        node = queue.pop(0)
-        print(node.data, end=" ")
-        if node.left:
-            queue.append(node.left)
+    stack = [root]
+    while stack:
+        node = stack.pop()
+        print(node.data, end="")
+
         if node.right:
-            queue.append(node.right)
+            stack.append(node.right)
+        if node.left:
+            stack.append(node.left)
+    print("\n")
 
 
-breadth_first_search(root)
+# Post-order DFS: Left, Right, Root
+
+# BFS: Level order traversal
+
+pre_order_dfs(root)
