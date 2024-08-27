@@ -1,3 +1,4 @@
+from locale import currency
 from os import name
 
 
@@ -30,7 +31,7 @@ def print_tree():
 
 
 # Pre-order DFS: Root, Left, Right
-def pre_order_dfs(root: Node) -> None:
+def pre_order_dfs(root: Node) -> list:
     stack = [root]
     current = root
     result = []
@@ -48,5 +49,5 @@ def pre_order_dfs(root: Node) -> None:
 
 # BFS: Level order traversal
 
-if name == __name__:
+if __name__ == "__main__":
     print(pre_order_dfs(root))
