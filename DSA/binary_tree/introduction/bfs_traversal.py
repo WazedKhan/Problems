@@ -1,3 +1,6 @@
+from os import name
+
+
 class Node:
     def __init__(self, val) -> None:
         self.data = val
@@ -20,7 +23,7 @@ def print_tree():
     tree = """
                 2
             3       4
-        5
+        5       6
 
     """
     print(tree)
@@ -28,25 +31,22 @@ def print_tree():
 
 # Pre-order DFS: Root, Left, Right
 def pre_order_dfs(root: Node) -> None:
-    print_tree()
-    print("PRE ORDER DFS: ")
-    if root is None:
-        return
-
     stack = [root]
+    current = root
+    result = []
     while stack:
-        node = stack.pop()
-        print(node.data, end="")
-
-        if node.right:
-            stack.append(node.right)
-        if node.left:
-            stack.append(node.left)
-    print("\n")
+        current = stack.pop()
+        result.append(current.data)
+        if current.right:
+            stack.append(current.right)
+        if current.left:
+            stack.append(current.left)
+    return result
 
 
 # Post-order DFS: Left, Right, Root
 
 # BFS: Level order traversal
 
-pre_order_dfs(root)
+if name == __name__:
+    print(pre_order_dfs(root))
