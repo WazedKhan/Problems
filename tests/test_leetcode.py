@@ -24,3 +24,9 @@ def test_chalk_replacer(chalk, k, expected):
     solution = Solution()
     assert solution.chalk_replacer_brute_force(chalk, k) == expected
     assert solution.chalkReplacer(chalk, k) == expected
+
+@pytest.mark.parametrize("string_val, repeat, expected", [("leetcode", 2, 6), ("iiii", 1, 36)])
+def test_sum_of_digit_1945(string_val, repeat, expected):
+    from LeetCode.sum_of_string_digit_1945 import Solution
+    solution = Solution().getLucky(string_val, repeat)
+    assert solution == expected
