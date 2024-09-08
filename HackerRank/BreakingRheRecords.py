@@ -1,23 +1,20 @@
-def breakingRecords(scores):
-    h_scores = []
-    l_scores = []
+from typing import List
 
-    for i in range(len(scores)):
-        if i != 0:
-            h_scores.append(max(scores[:i]))
-            l_scores.append(min(scores[:i]))
 
-    h_scores = list(set(h_scores))
-    l_scores = list(set(l_scores))
+def breaking_records(scores: List[int]) -> List[int]:
+    max_score = min_score = scores[0]
+    max_count = min_count = 0
+    for score in range(1, len(scores)):
+        if scores[score] > max_score:
+            max_score = scores[score]
+            max_count += 1
+        if scores[score] < min_score:
+            min_score = scores[score]
+            min_count += 1
+    return [max_count, min_count]
 
-    for count, value in enumerate(h_scores):
-        if value in l_scores:
-            h_scores.remove(value)
-            l_scores.remove(value)
 
-    return [len(h_scores), len(l_scores)]
-
-scores = list(map(int, '10 5 20 20 4 5 2 25 1'.rstrip().split()))
-result = breakingRecords(scores)
+scores = list(map(int, "10 5 20 20 4 5 2 25 1".rstrip().split()))
+result = breaking_records(scores)
 
 print(result)
