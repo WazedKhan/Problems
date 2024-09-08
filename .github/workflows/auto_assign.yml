@@ -1,23 +1,22 @@
-name: Auto Assign and Require Approval
+# Set to true to add reviewers to PRs
+addReviewers: true
 
-on:
-  pull_request:
-    types: [opened, reopened, synchronize]
+# Set to 'author' to add PR's author as an assignee
+addAssignees: True  # Since you are handling approvals, no need to auto-assign anyone else
 
-jobs:
-  auto-assign:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Assign WazedKhan as a reviewer
-        uses: kentaro-m/auto-assign-action@v2.2.1
-        with:
-          reviewers: 'WazedKhan'
+# A list of reviewers to be added to PRs (GitHub username)
+reviewers:
+  - WazedKhan
+  - WazedKhan-Repliq
 
-  require-approval:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Ensure PR has one approval excluding the author
-        uses: hmarr/auto-approve-action@v2
-        with:
-          required_approvals: 1
-          bypass_author: true
+# A number of reviewers added to the PR
+# Set 0 to add all the reviewers (default: 0)
+numberOfReviewers: 1  # Only one reviewer (you)
+
+# No additional assignees since you handle everything
+numberOfAssignees: 0
+
+# A list of keywords to skip the process if PR's title includes it
+skipKeywords:
+  - wip
+  - draft
