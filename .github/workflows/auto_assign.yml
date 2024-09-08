@@ -1,0 +1,23 @@
+name: Auto Assign and Require Approval
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  auto-assign:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Assign WazedKhan as a reviewer
+        uses: kentaro-m/auto-assign-action@v2.2.1
+        with:
+          reviewers: 'WazedKhan'
+
+  require-approval:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ensure PR has one approval excluding the author
+        uses: hmarr/auto-approve-action@v2
+        with:
+          required_approvals: 1
+          bypass_author: true
