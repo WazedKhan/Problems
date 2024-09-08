@@ -1,53 +1,43 @@
-from locale import currency
-from os import name
-
-
 class Node:
-    def __init__(self, val) -> None:
-        self.data = val
-        self.left = None
+    def __init__(self, value) -> None:
+        self.value = value
         self.right = None
+        self.left = None
 
 
-# Creating the tree
-root = Node(2)
-root.left = Node(3)
-root.right = Node(4)
-root.left.left = Node(5)
+class BinaryTree:
+    def __init__(self, head: Node) -> None:
+        self.head = head
+
+    def travel_pre_order(self):
+        if self.head is None:
+            print("Provided Binary Tree is empty!")
+
+        stack = [self.head]
+        while stack:
+            node = stack.pop()
+            print(node.value, end=" ")
+            if node.right:
+                stack.append(node.right)
+            if node.left:
+                stack.append(node.left)
 
 
-# root.left.right = Node(8)
+# Creating nodes
+node1 = Node(1)
+node2 = Node(2)
+node3 = Node(3)
+node4 = Node(4)
+node5 = Node(5)
 
+# Building the tree
+node1.left = node2  # 2 is the left child of 1
+node1.right = node3  # 3 is the right child of 1
+node2.left = node4  # 4 is the left child of 2
+node2.right = node5  # 5 is the right child of 2
 
-def print_tree():
-    print()
-    tree = """
-                2
-            3       4
-        5       6
+# Create BinaryTree with node1 as the head
+binary_tree = BinaryTree(node1)
 
-    """
-    print(tree)
-
-
-# Pre-order DFS: Root, Left, Right
-def pre_order_dfs(root: Node) -> list:
-    stack = [root]
-    current = root
-    result = []
-    while stack:
-        current = stack.pop()
-        result.append(current.data)
-        if current.right:
-            stack.append(current.right)
-        if current.left:
-            stack.append(current.left)
-    return result
-
-
-# Post-order DFS: Left, Right, Root
-
-# BFS: Level order traversal
-
-if __name__ == "__main__":
-    print(pre_order_dfs(root))
+# Testing pre-order traversal
+binary_tree.travel_pre_order()
