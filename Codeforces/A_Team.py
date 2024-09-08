@@ -1,9 +1,18 @@
-n = int(input())
+from typing import List
 
-res = 0
 
-for i in range(n):
-    if sum(list(map(int, input().split(' ')))) >= 2:
-        res += 1
+def solvable_problem(n: int, surety: List[list]) -> int:
+    result = 0
+    for i in range(n):
+        if sum(surety[i]) >= 2:
+            result += 1
+    return result
 
-print(res)
+
+surety = []
+n = 3
+for i in ["1 1 0", "1 1 1", "1 0 0"]:
+    temp_list = list(map(int, i.split(" ")))
+    surety.append(temp_list)
+
+print(solvable_problem(n, surety))
