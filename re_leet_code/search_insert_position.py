@@ -3,18 +3,15 @@ from typing import List
 
 class Solution:
     def search_insert(self, nums: List[int], target: int) -> int:
-        left, right = 0, len(nums)
+        left, right = 0, len(nums) - 1
 
-        while right > left:
-            mid = (right + left) // 2
-            if target == nums[mid]:
+        while left <= right:
+            mid = (left + right) // 2
+            if nums[mid] == target:
                 return mid
-            elif target > nums[mid]:
+            elif nums[mid] < target:
                 left = mid + 1
-            elif target < nums[mid]:
+            else:
                 right = mid - 1
 
-        if len(nums) - 1 >= left and nums[left] < target:
-            return left + 1
-        else:
-            return left
+        return left
