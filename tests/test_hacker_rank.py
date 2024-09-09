@@ -1,4 +1,3 @@
-import pytest
 from HackerRank.BreakingRheRecords import breaking_records
 
 
@@ -21,3 +20,31 @@ def test_breaking_records():
     # Test case 6: Two games where both records are broken
     assert breaking_records([10, 20]) == [1, 0]
     assert breaking_records([10, 5]) == [0, 1]
+
+
+def test_time_in_words():
+    from HackerRank.time_in_words import time_in_words
+
+    # Test exact hour
+    assert time_in_words(5, 0) == "five o' clock"
+    assert time_in_words(12, 0) == "twelve o' clock"
+
+    # Test quarter past
+    assert time_in_words(5, 15) == "quarter past five"
+    assert time_in_words(7, 15) == "quarter past seven"
+
+    # Test quarter to
+    assert time_in_words(5, 45) == "quarter to six"
+    assert time_in_words(11, 45) == "quarter to twelve"
+
+    # Test half past
+    assert time_in_words(5, 30) == "half past five"
+    assert time_in_words(12, 30) == "half past twelve"
+
+    # Test minutes past
+    assert time_in_words(5, 1) == "one minute past five"
+    assert time_in_words(6, 10) == "ten minutes past six"
+
+    # Test minutes to
+    assert time_in_words(5, 59) == "one minute to six"
+    assert time_in_words(11, 50) == "ten minutes to twelve"
