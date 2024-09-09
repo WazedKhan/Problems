@@ -1,4 +1,5 @@
 import pytest
+from typing import List
 
 
 @pytest.mark.parametrize("input_value, expected", [(19, True), (2, False)])
@@ -7,7 +8,10 @@ def test_happy_number_202(input_value, expected):
 
     solution = Solution().isHappy(input_value)
     assert solution == expected
+
+
 # challenge
+
 
 @pytest.mark.parametrize(
     "chalk, k, expected",
@@ -25,8 +29,30 @@ def test_chalk_replacer(chalk, k, expected):
     assert solution.chalk_replacer_brute_force(chalk, k) == expected
     assert solution.chalkReplacer(chalk, k) == expected
 
-@pytest.mark.parametrize("string_val, repeat, expected", [("leetcode", 2, 6), ("iiii", 1, 36)])
+
+@pytest.mark.parametrize(
+    "string_val, repeat, expected", [("leetcode", 2, 6), ("iiii", 1, 36)]
+)
 def test_sum_of_digit_1945(string_val, repeat, expected):
     from LeetCode.sum_of_string_digit_1945 import Solution
+
     solution = Solution().getLucky(string_val, repeat)
     assert solution == expected
+
+
+@pytest.mark.parametrize(
+    "nums, target, expected",
+    [
+        ([1, 3], 2, 1),  # target 2 should be inserted at index 1
+        ([1, 3, 5, 6], 5, 2),  # target 5 exists at index 2
+        ([1, 3, 5, 6], 2, 1),  # target 2 should be inserted at index 1
+        ([1, 3, 5, 6], 7, 4),  # target 7 should be inserted at index 4
+        ([1, 3, 5, 6], 0, 0),  # target 0 should be inserted at index 0
+        ([1], 0, 0),  # target 0 should be inserted at index 0 in a single-element list
+    ],
+)
+def test_search_insert(nums: List[int], target: int, expected: int):
+    from re_leet_code.search_insert_position import Solution
+
+    solution = Solution()
+    assert solution.search_insert(nums, target) == expected
