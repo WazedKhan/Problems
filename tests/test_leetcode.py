@@ -30,9 +30,7 @@ def test_chalk_replacer(chalk, k, expected):
     assert solution.chalkReplacer(chalk, k) == expected
 
 
-@pytest.mark.parametrize(
-    "string_val, repeat, expected", [("leetcode", 2, 6), ("iiii", 1, 36)]
-)
+@pytest.mark.parametrize("string_val, repeat, expected", [("leetcode", 2, 6), ("iiii", 1, 36)])
 def test_sum_of_digit_1945(string_val, repeat, expected):
     from LeetCode.sum_of_string_digit_1945 import Solution
 
@@ -56,3 +54,23 @@ def test_search_insert(nums: List[int], target: int, expected: int):
 
     solution = Solution()
     assert solution.search_insert(nums, target) == expected
+
+
+@pytest.mark.parametrize(
+    "s, expected",
+    [
+        ("abcabcbb", 3),  # longest substring is "abc" with length 3
+        ("bbbbb", 1),  # longest substring is "b" with length 1
+        ("pwwkew", 3),  # longest substring is "wke" with length 3
+        ("", 0),  # empty string, longest substring is 0
+        ("abcdef", 6),  # entire string is the longest substring, length 6
+        ("aab", 2),  # longest substring is "ab", length 2
+        ("dvdf", 3),  # longest substring is "vdf", length 3
+        (" ", 1),  # single space character, length 1
+    ],
+)
+def test_length_of_longest_substring(s: str, expected: int):
+    from ..LeetCode.longest_substring_no_repeat_03 import Solution
+
+    solution = Solution()
+    assert solution.lengthOfLongestSubstring(s) == expected
