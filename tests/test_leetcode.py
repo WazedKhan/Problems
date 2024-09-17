@@ -74,3 +74,29 @@ def test_length_of_longest_substring(s: str, expected: int):
 
     solution = Solution()
     assert solution.lengthOfLongestSubstring(s) == expected
+
+
+class TestSolution:
+    @pytest.mark.parametrize(
+        "s, expected",
+        [
+            ("babad", {"bab", "aba"}),  # both "bab" and "aba" are valid answers
+            ("cbbd", "bb"),  # longest palindrome is "bb"
+            ("a", "a"),  # single character is the palindrome
+            ("ac", {"a", "c"}),  # both "a" and "c" are valid
+            ("racecar", "racecar"),  # the entire string is a palindrome
+            ("", ""),  # empty string case
+            ("noon", "noon"),  # even-length palindrome
+            ("abcd", {"a", "b", "c", "d"}),  # no palindromes longer than 1
+        ],
+    )
+    def test_longest_palindrome(self, s: str, expected):
+        from LeetCode.longest_palindromic_substring_05 import Solution
+
+        solution = Solution()
+        result = solution.longestPalindrome(s)
+        if isinstance(expected, set):
+            # If there are multiple valid answers (like "bab" or "aba"), check if result is one of them
+            assert result in expected
+        else:
+            assert result == expected
