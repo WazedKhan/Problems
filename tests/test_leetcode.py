@@ -74,3 +74,22 @@ def test_length_of_longest_substring(s: str, expected: int):
 
     solution = Solution()
     assert solution.lengthOfLongestSubstring(s) == expected
+
+
+@pytest.mark.parametrize(
+    "s1, s2, expected",
+    [
+        ("this apple is sweet", "this apple is sour", ["sweet", "sour"]),  # uncommon words are "sweet" and "sour"
+        ("apple apple", "banana", ["banana"]),  # "banana" is the only uncommon word
+        ("apple", "apple", []),  # no uncommon words, both sentences have "apple"
+        ("the quick", "brown fox", ["the", "quick", "brown", "fox"]),  # all words are uncommon
+        ("", "fox", ["fox"]),  # one sentence is empty, uncommon is "fox"
+        ("hello world", "", ["hello", "world"]),  # second sentence is empty
+        ("a b c", "a b", ["c"]),  # "c" is the only uncommon word
+    ],
+)
+def test_uncommon_from_sentences(s1: str, s2: str, expected: List[str]):
+    from LeetCode.uncommon_words_in_two_sen_884 import Solution
+
+    solution = Solution()
+    assert sorted(solution.uncommonFromSentences(s1, s2)) == sorted(expected)
