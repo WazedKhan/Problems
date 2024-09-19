@@ -93,3 +93,24 @@ def test_uncommon_from_sentences(s1: str, s2: str, expected: List[str]):
 
     solution = Solution()
     assert sorted(solution.uncommonFromSentences(s1, s2)) == sorted(expected)
+
+
+# 1. Two Sum
+@pytest.mark.parametrize(
+    "nums, target, expected",
+    [
+        ([2, 7, 11, 15], 9, [0, 1]),  # 2 + 7 = 9
+        # ([3, 2, 4], 6, [1, 2]),  # 2 + 4 = 6
+        # ([3, 3], 6, [0, 1]),  # 3 + 3 = 6
+        # ([1, 2, 3, 4, 5], 9, [3, 4]),  # 4 + 5 = 9
+        # ([0, -1, 2, -3, 1], -2, [1, 3]),  # -1 + (-3) = -2
+        # ([1, 5, 5, 7], 10, [1, 2]),  # 5 + 5 = 10
+        # ([1, 4, 5, 6, 10], 16, [3, 4]),  # 6 + 10 = 16
+    ],
+)
+def test_two_sum(nums: List[int], target: int, expected: List[int]):
+    from re_leet_code.two_sum_01 import Solution
+
+    solution = Solution()
+    result = solution.twoSum(nums, target)
+    assert sorted(result) == sorted(expected)
