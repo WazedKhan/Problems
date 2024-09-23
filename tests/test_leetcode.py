@@ -30,7 +30,9 @@ def test_chalk_replacer(chalk, k, expected):
     assert solution.chalkReplacer(chalk, k) == expected
 
 
-@pytest.mark.parametrize("string_val, repeat, expected", [("leetcode", 2, 6), ("iiii", 1, 36)])
+@pytest.mark.parametrize(
+    "string_val, repeat, expected", [("leetcode", 2, 6), ("iiii", 1, 36)]
+)
 def test_sum_of_digit_1945(string_val, repeat, expected):
     from LeetCode.sum_of_string_digit_1945 import Solution
 
@@ -79,10 +81,18 @@ def test_length_of_longest_substring(s: str, expected: int):
 @pytest.mark.parametrize(
     "s1, s2, expected",
     [
-        ("this apple is sweet", "this apple is sour", ["sweet", "sour"]),  # uncommon words are "sweet" and "sour"
+        (
+            "this apple is sweet",
+            "this apple is sour",
+            ["sweet", "sour"],
+        ),  # uncommon words are "sweet" and "sour"
         ("apple apple", "banana", ["banana"]),  # "banana" is the only uncommon word
         ("apple", "apple", []),  # no uncommon words, both sentences have "apple"
-        ("the quick", "brown fox", ["the", "quick", "brown", "fox"]),  # all words are uncommon
+        (
+            "the quick",
+            "brown fox",
+            ["the", "quick", "brown", "fox"],
+        ),  # all words are uncommon
         ("", "fox", ["fox"]),  # one sentence is empty, uncommon is "fox"
         ("hello world", "", ["hello", "world"]),  # second sentence is empty
         ("a b c", "a b", ["c"]),  # "c" is the only uncommon word
@@ -93,3 +103,30 @@ def test_uncommon_from_sentences(s1: str, s2: str, expected: List[str]):
 
     solution = Solution()
     assert sorted(solution.uncommonFromSentences(s1, s2)) == sorted(expected)
+
+
+def test_is_palindrome(self):
+    from LeetCode.is_palindrome_linked_list import Solution
+    from .helpers import list_to_linked_list
+
+    solution = Solution()
+
+    # Test case 1: Palindrome [1, 2, 2, 1] -> True
+    l1 = list_to_linked_list([1, 2, 2, 1])
+    assert solution.isPalindrome(l1) == True, "Test case 1 failed"
+
+    # Test case 2: Not a palindrome [1, 2] -> False
+    l1 = list_to_linked_list([1, 2])
+    assert solution.isPalindrome(l1) == False, "Test case 2 failed"
+
+    # Test case 3: Single element [1] -> True
+    l1 = list_to_linked_list([1])
+    assert solution.isPalindrome(l1) == True, "Test case 3 failed"
+
+    # Test case 4: Empty list -> True (Assume empty list as a palindrome)
+    l1 = list_to_linked_list([])
+    assert solution.isPalindrome(l1) == True, "Test case 4 failed"
+
+    # Test case 5: Palindrome [1, 0, 1] -> True
+    l1 = list_to_linked_list([1, 0, 1])
+    assert solution.isPalindrome(l1) == True, "Test case 5 failed"
