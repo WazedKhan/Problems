@@ -93,3 +93,29 @@ def test_uncommon_from_sentences(s1: str, s2: str, expected: List[str]):
 
     solution = Solution()
     assert sorted(solution.uncommonFromSentences(s1, s2)) == sorted(expected)
+
+
+# Test suite for Solution class
+@pytest.mark.parametrize(
+    "input_string, expected_output",
+    [
+        ("babad", ["bab", "aba"]),  # The longest palindrome can be "bab" or "aba"
+        ("cbbd", "bb"),  # The longest palindrome is "bb"
+        ("a", "a"),  # Single character is a palindrome itself
+        ("ac", "a"),  # Longest palindrome is either "a" or "c"
+        ("", ""),  # Empty string should return an empty string
+        ("racecar", "racecar"),  # Entire string is a palindrome
+        ("noon", "noon"),  # Entire string is a palindrome
+        ("abcdef", "a"),  # No palindrome longer than 1 character
+    ],
+)
+def test_longest_palindrome(input_string, expected_output):
+    from LeetCode.longest_palindrome_05 import Solution
+
+    solution = Solution()
+    result = solution.longestPalindrome(input_string)
+
+    if isinstance(expected_output, list):
+        assert result in expected_output  # Handle cases with multiple valid palindromes
+    else:
+        assert result == expected_output
