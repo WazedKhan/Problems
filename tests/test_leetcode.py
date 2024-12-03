@@ -30,7 +30,9 @@ def test_chalk_replacer(chalk, k, expected):
     assert solution.chalkReplacer(chalk, k) == expected
 
 
-@pytest.mark.parametrize("string_val, repeat, expected", [("leetcode", 2, 6), ("iiii", 1, 36)])
+@pytest.mark.parametrize(
+    "string_val, repeat, expected", [("leetcode", 2, 6), ("iiii", 1, 36)]
+)
 def test_sum_of_digit_1945(string_val, repeat, expected):
     from LeetCode.sum_of_string_digit_1945 import Solution
 
@@ -79,10 +81,18 @@ def test_length_of_longest_substring(s: str, expected: int):
 @pytest.mark.parametrize(
     "s1, s2, expected",
     [
-        ("this apple is sweet", "this apple is sour", ["sweet", "sour"]),  # uncommon words are "sweet" and "sour"
+        (
+            "this apple is sweet",
+            "this apple is sour",
+            ["sweet", "sour"],
+        ),  # uncommon words are "sweet" and "sour"
         ("apple apple", "banana", ["banana"]),  # "banana" is the only uncommon word
         ("apple", "apple", []),  # no uncommon words, both sentences have "apple"
-        ("the quick", "brown fox", ["the", "quick", "brown", "fox"]),  # all words are uncommon
+        (
+            "the quick",
+            "brown fox",
+            ["the", "quick", "brown", "fox"],
+        ),  # all words are uncommon
         ("", "fox", ["fox"]),  # one sentence is empty, uncommon is "fox"
         ("hello world", "", ["hello", "world"]),  # second sentence is empty
         ("a b c", "a b", ["c"]),  # "c" is the only uncommon word
@@ -135,12 +145,16 @@ def test_longest_palindrome(input_string, expected_output):
 )
 def test_two_sum(nums, target, expected):
     from LeetCode.recap_02.two_sum_01 import Solution as Recap
+    from recap.two_sums import Solution
 
     # Create an instance of the Solution class
     solution = Recap()
+    recap_solution = Solution()
 
     # Call the twoSum method
     result = solution.twoSum(nums, target)
+    res = recap_solution.twoSum(nums, target)
 
     # Check if the returned result matches the expected output (order doesn't matter)
     assert sorted(result) == sorted(expected)
+    assert sorted(res) == sorted(expected)
