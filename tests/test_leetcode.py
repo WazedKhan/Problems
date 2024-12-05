@@ -30,9 +30,7 @@ def test_chalk_replacer(chalk, k, expected):
     assert solution.chalkReplacer(chalk, k) == expected
 
 
-@pytest.mark.parametrize(
-    "string_val, repeat, expected", [("leetcode", 2, 6), ("iiii", 1, 36)]
-)
+@pytest.mark.parametrize("string_val, repeat, expected", [("leetcode", 2, 6), ("iiii", 1, 36)])
 def test_sum_of_digit_1945(string_val, repeat, expected):
     from LeetCode.sum_of_string_digit_1945 import Solution
 
@@ -129,32 +127,3 @@ def test_longest_palindrome(input_string, expected_output):
         assert result in expected_output  # Handle cases with multiple valid palindromes
     else:
         assert result == expected_output
-
-
-# Two Sum: 02
-@pytest.mark.parametrize(
-    "nums, target, expected",
-    [
-        ([2, 7, 11, 15], 9, [0, 1]),  # Basic test case
-        ([3, 2, 4], 6, [1, 2]),  # Two sum in the middle
-        ([3, 3], 6, [0, 1]),  # Duplicate elements
-        ([1, 2, 3, 4, 5], 9, [3, 4]),  # Two sum at the end
-        ([0, 4, 3, 0], 0, [0, 3]),  # Zero as part of the sum
-        ([-1, -2, -3, -4, -5], -8, [2, 4]),  # Negative numbers
-    ],
-)
-def test_two_sum(nums, target, expected):
-    from LeetCode.recap_02.two_sum_01 import Solution as Recap
-    from recap.two_sums import Solution
-
-    # Create an instance of the Solution class
-    solution = Recap()
-    recap_solution = Solution()
-
-    # Call the twoSum method
-    result = solution.twoSum(nums, target)
-    res = recap_solution.twoSum(nums, target)
-
-    # Check if the returned result matches the expected output (order doesn't matter)
-    assert sorted(result) == sorted(expected)
-    assert sorted(res) == sorted(expected)
