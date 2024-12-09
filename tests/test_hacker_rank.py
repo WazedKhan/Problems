@@ -1,3 +1,6 @@
+import pytest
+from typing import List
+
 from HackerRank.BreakingRheRecords import breaking_records
 
 
@@ -48,3 +51,24 @@ def test_time_in_words():
     # Test minutes to
     assert time_in_words(5, 59) == "one minute to six"
     assert time_in_words(11, 50) == "ten minutes to twelve"
+
+
+# Test the Larry's Array function
+@pytest.mark.parametrize(
+    "array, expected_output",
+    [
+        ([3, 1, 2], "YES"),  # Example from problem description
+        ([1, 3, 4, 2], "YES"),  # Example from problem description
+        ([1, 2, 3, 5, 4], "NO"),  # Example from problem description
+        ([1, 2, 3], "YES"),  # Already sorted
+        ([4, 3, 2, 1], "NO"),  # Impossible to sort
+        # ([2, 1, 3], "YES"),  # Rotations make it sortable
+        ([1, 5, 4, 3, 2], "NO"),  # Odd number of inversions
+        ([1], "YES"),  # Single element, no sorting needed
+        ([2, 1], "NO"),  # Only two elements, can't perform rotations
+    ],
+)
+def test_larrysArray(array: List[int], expected_output: str):
+    from HackerRank.larrys_array import larrysArray
+
+    assert larrysArray(array) == expected_output
