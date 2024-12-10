@@ -127,3 +127,23 @@ def test_longest_palindrome(input_string, expected_output):
         assert result in expected_output  # Handle cases with multiple valid palindromes
     else:
         assert result == expected_output
+
+
+@pytest.mark.parametrize(
+    "input_value, expected",
+    [
+        (121, True),  # Positive palindrome number
+        (-121, False),  # Negative number, not a palindrome
+        (10, False),  # Not a palindrome
+        (0, True),  # Single-digit number, always a palindrome
+        (12321, True),  # Odd-length palindrome
+        (12345, False),  # Non-palindrome
+        (1221, True),  # Even-length palindrome
+        (-101, False),  # Negative number, not a palindrome
+    ],
+)
+def test_is_palindrome(input_value, expected):
+    from LeetCode.is_palindrome import Solution
+
+    solution = Solution()
+    assert solution.isPalindrome(input_value) == expected
