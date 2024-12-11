@@ -147,3 +147,27 @@ def test_is_palindrome(input_value, expected):
 
     solution = Solution()
     assert solution.isPalindrome(input_value) == expected
+
+
+@pytest.mark.parametrize(
+    "roman, expected",
+    [
+        ("I", 1),
+        ("IV", 4),
+        ("IX", 9),
+        ("XL", 40),
+        ("XC", 90),
+        ("CD", 400),
+        ("CM", 900),
+        ("MMXXIV", 2024),
+        ("MCMXCIV", 1994),
+        ("III", 3),
+        ("LVIII", 58),
+        ("CCCLXXXIX", 389),
+    ],
+)
+def test_roman_to_int(roman, expected):
+    from LeetCode.roman_to_int import Solution
+
+    solution = Solution()
+    assert solution.romanToInt(roman) == expected
