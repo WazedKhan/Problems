@@ -171,3 +171,11 @@ def test_roman_to_int(roman, expected):
 
     solution = Solution()
     assert solution.romanToInt(roman) == expected
+
+
+@pytest.mark.parametrize("gift, k, expected", [([25, 64, 9, 4, 100], 4, 29), ([1, 1, 1, 1], 4, 4)])
+def test_gift_from_richest_pile(gift, k, expected):
+    from LeetCode.gift_from_richest_pile import Solution
+
+    solution = Solution()
+    assert solution.pickGifts(gift, k) == expected
