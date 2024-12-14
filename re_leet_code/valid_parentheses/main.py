@@ -1,17 +1,15 @@
-from collections import Counter
+def isValid(s):
+    parentheses_hash = {")": "(", "}": "{", "]": "["}
+    stack = []
 
-def isValid(s: str) -> bool:
-    # parentheses = list(s)
-    # for i in range(len(parentheses)):
-    parentheses_dict = Counter(s)
-    if parentheses_dict["("] != parentheses_dict[")"]:
-        return False
-    elif parentheses_dict["{"] != parentheses_dict["}"]:
-        return False
-    elif parentheses_dict["["] != parentheses_dict["]"]:
-        return False
-    return True
+    for i in s:
+        if stack and i in parentheses_hash and stack[-1] == parentheses_hash[i]:
+            stack.pop()
+        else:
+            stack.append(i)
+
+    return not stack
 
 
-s = "()[]{}"
+s = "()[(]{)}"
 print(isValid(s))
