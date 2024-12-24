@@ -50,7 +50,7 @@ def test_sum_of_digit_1945(string_val, repeat, expected):
     ],
 )
 def test_search_insert(nums: List[int], target: int, expected: int):
-    from re_leet_code.search_insert_position import Solution
+    from LeetCode.search_insert_position import Solution
 
     solution = Solution()
     assert solution.search_insert(nums, target) == expected
