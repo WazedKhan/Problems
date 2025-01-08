@@ -203,3 +203,20 @@ def test_two_sum(nums: List[int], target: int, expected: List[int]):
 
     # Ensure result is correct, accounting for possible order mismatch
     assert sorted(result) == sorted(expected)
+
+
+@pytest.mark.parametrize(
+    "words, expected",
+    [
+        (["a", "aba", "ababa", "aa"], 4),
+        (["pa", "papa", "ma", "mama"], 2),
+        (["abab", "ab"], 0),
+        (["a", "abb"], 0),
+    ],
+)
+def test_countPrefixSuffixPairs(words: List[str], expected: int):
+    from LeetCode.count_prefix_suffix_3042 import Solution
+
+    solution = Solution()
+    result = solution.countPrefixSuffixPairs(words)
+    assert result == expected, f"For input {words}, expected {expected} but got {result}"
