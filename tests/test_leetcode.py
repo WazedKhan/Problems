@@ -220,3 +220,25 @@ def test_countPrefixSuffixPairs(words: List[str], expected: int):
     solution = Solution()
     result = solution.countPrefixSuffixPairs(words)
     assert result == expected, f"For input {words}, expected {expected} but got {result}"
+
+
+@pytest.mark.parametrize(
+    "x, expected",
+    [
+        (123, 321),  # Basic positive number
+        (-123, -321),  # Basic negative number
+        (120, 21),  # Ends with zero
+        (0, 0),  # Single-digit zero
+        (1, 1),  # Single positive digit
+        (-1, -1),  # Single negative digit
+        (1534236469, 0),  # Overflow positive case
+        (-2147483648, 0),  # Overflow negative case
+        (1000000003, 0),  # Close to overflow
+    ],
+)
+def test_reverse_integer(x: int, expected: int):
+    from LeetCode.medium.reverse_integer_7 import Solution
+
+    solution = Solution()
+    result = solution.reverse(x)
+    assert result == expected
