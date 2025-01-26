@@ -118,7 +118,7 @@ def test_uncommon_from_sentences(s1: str, s2: str, expected: List[str]):
     ],
 )
 def test_longest_palindrome(input_string, expected_output):
-    from LeetCode.longest_palindrome_05 import Solution
+    from LeetCode.medium.longest_palindrome_05 import Solution
 
     solution = Solution()
     result = solution.longestPalindrome(input_string)
