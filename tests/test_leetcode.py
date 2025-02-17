@@ -265,3 +265,18 @@ def test_is_valid_parentheses(s: str, expected: bool):
     solution = Solution()
     result = solution.isValid(s)
     assert result == expected
+
+
+@pytest.mark.parametrize(
+    "s, expected",
+    [
+        ("Hello World", 5),
+        ("   fly me   to   the moon  ", 4),
+        ("luffy is still joyboy", 6),
+    ],
+)
+def test_length_of_last_word_58(s: str, expected: int):
+    from LeetCode.easy.length_of_last_word_58 import Solution
+
+    solution = Solution()
+    assert solution.lengthOfLastWord(s) == expected
