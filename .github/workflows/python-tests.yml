@@ -1,4 +1,4 @@
-name: Python application
+name: Python and Go Test Checks
 
 on: [push, pull_request]
 
@@ -9,7 +9,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-
+  
+    # --------------------- python setup ---------------------------
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
@@ -23,3 +24,13 @@ jobs:
     - name: Run tests
       run: |
         pytest
+    
+    # --------------------- Go --------------------------------------
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: "1.22"
+
+    - name: Run Go tests
+      working-directory: Problems/Go
+      run: go test ./...
