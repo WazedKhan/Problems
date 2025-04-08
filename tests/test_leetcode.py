@@ -1,4 +1,4 @@
-import pytest
+import pytest  # type: ignore
 from typing import List
 
 
@@ -280,3 +280,34 @@ def test_length_of_last_word_58(s: str, expected: int):
 
     solution = Solution()
     assert solution.lengthOfLastWord(s) == expected
+
+
+@pytest.mark.parametrize(
+    "nums, val, expected_nums, expected_k",
+    [
+        ([3, 2, 2, 3], 3, [2, 2], 2),
+        ([0, 1, 2, 2, 3, 0, 4, 2], 2, [0, 1, 3, 0, 4], 5),
+        ([1], 1, [], 0),
+        ([1, 2, 3], 4, [1, 2, 3], 3),
+        ([4, 4, 4, 4], 4, [], 0),
+        ([2, 2, 2, 3, 3], 3, [2, 2, 2], 3),
+    ],
+)
+def test_remove_element(nums, val, expected_nums, expected_k):
+    from LeetCode.easy.remove_element_027 import Solution
+
+    solution = Solution()
+    original = nums[:]
+    k, nums = solution.remove_element_brute_force(nums, val)
+
+    assert k == expected_k
+    assert sorted(nums[:k]) == sorted(
+        expected_nums
+    ), f"Failed for input: {original} with val: {val}"
+
+    k, nums = solution.removeElement(nums, val)
+
+    assert k == expected_k
+    assert sorted(nums[:k]) == sorted(
+        expected_nums
+    ), f"Failed for input: {original} with val: {val}"
