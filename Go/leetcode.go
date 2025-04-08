@@ -15,3 +15,21 @@ func RemoveDuplicates(nums []int) int {
 	}
 	return slow_pointer + 1
 }
+
+// https://leetcode.com/problems/remove-element/description/?envType=problem-list-v2&envId=array
+// Python Solution: LeetCode/easy/remove_element_027.py
+
+func RemoveElements(nums []int, val int) int{
+	if len(nums) == 0{
+        return 0
+    }
+
+    k := 0
+    for _, value := range nums{
+        if value != val{
+            nums[k] = value
+            k ++
+        }
+    }
+    return k
+}
