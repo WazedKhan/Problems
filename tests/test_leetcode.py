@@ -1,5 +1,6 @@
-import pytest  # type: ignore
 from typing import List
+
+import pytest  # type: ignore
 
 
 @pytest.mark.parametrize("input_value, expected", [(19, True), (2, False)])
@@ -311,3 +312,28 @@ def test_remove_element(nums, val, expected_nums, expected_k):
     assert sorted(nums[:k]) == sorted(
         expected_nums
     ), f"Failed for input: {original} with val: {val}"
+
+
+@pytest.mark.parametrize(
+    "nums, target, expected",
+    [
+        ([1, 3, 5, 6], 5, 2),  # Target exists in the list
+        ([1, 3, 5, 6], 2, 1),  # Target should be inserted at index 1
+        ([1, 3, 5, 6], 7, 4),  # Target should be inserted at the end
+        ([1, 3, 5, 6], 0, 0),  # Target should be inserted at the beginning
+        ([1], 0, 0),  # Single element list
+    ],
+)
+def test_search_insert_position(nums: List[int], target: int, expected: int):
+    from LeetCode.easy.search_insert_position_035 import Solution
+
+    solution = Solution()
+    result = solution.searchInsert(nums, target)
+    assert (
+        result == expected
+    ), f"Expected {expected}, but got {result} for nums: {nums} and target: {target}"
+
+    result = solution.searchInsert_binary_search(nums, target)
+    assert (
+        result == expected
+    ), f"Expected {expected}, but got {result} for nums: {nums} and target: {target}"
