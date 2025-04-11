@@ -337,3 +337,22 @@ def test_search_insert_position(nums: List[int], target: int, expected: int):
     assert (
         result == expected
     ), f"Expected {expected}, but got {result} for nums: {nums} and target: {target}"
+
+
+@pytest.mark.parametrize(
+    "low, high, expected",
+    [
+        (1, 100, 9),  # Example: 11, 22, 33, ..., 99 (symmetric 2-digit numbers)
+        (1200, 1230, 4),  # Example from the problem description
+        (10, 99, 9),  # All 2-digit symmetric numbers
+        (100, 999, 0),  # All 3-digit numbers: none are symmetric (odd length)
+        (1000, 9999, 615),  # All 4-digit symmetric numbers
+    ],
+)
+def test_count_symmetric_integers(low, high, expected):
+    from LeetCode.easy.count_symmetric_integers_2843 import Solution
+
+    sol = Solution()
+    assert (
+        sol.countSymmetricIntegers(low, high) == expected
+    ), sol.countSymmetricIntegers(low, high)
