@@ -356,3 +356,26 @@ def test_count_symmetric_integers(low, high, expected):
     assert (
         sol.countSymmetricIntegers(low, high) == expected
     ), sol.countSymmetricIntegers(low, high)
+
+
+@pytest.mark.parametrize(
+    "digits, expected",
+    [
+        ([1, 2, 3], [1, 2, 4]),
+        ([9, 9, 9], [1, 0, 0, 0]),
+        ([0], [1]),
+        ([1, 0], [1, 1]),
+        ([2, 9], [3, 0]),
+        ([5, 5], [5, 6]),
+        ([9, 8, 9], [9, 9, 0]),
+    ],
+)
+def test_plus_one_66(digits: List[int], expected: List[int]):
+    from LeetCode.easy.plus_one_66 import Solution
+
+    solution = Solution()
+    data = digits.copy()
+    result = solution.plusOne(data)
+    assert (
+        result == expected
+    ), f"For input {digits}, expected {expected} but got {result}"
