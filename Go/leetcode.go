@@ -1,5 +1,7 @@
 package main
 
+import "strconv"
+
 // URL: https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/?envType=problem-list-v2&envId=array
 // Python Solution: LeetCode/remove_duplicates.py
 func RemoveDuplicates(nums []int) int {
@@ -62,7 +64,7 @@ func SearchInsert(nums []int, target int) int {
 func SearchInsertBinarySearch(nums []int, target int) int {
 	left, right := 0, len(nums)-1
 
-	for left =< right{
+	for left <= right{
 		mid := (left + right) / 2
 		if nums[mid] == target{
 			return mid
@@ -77,4 +79,33 @@ func SearchInsertBinarySearch(nums []int, target int) int {
 		return len(nums)
 	}
 	return left
+}
+
+
+func CountSymmetricIntegers(low int, high int) int {
+	symmetric_count := 0
+
+	for i := low; i <= high; i++ {
+		if is_symmetric(i) {
+			symmetric_count ++
+		}
+	}
+	return symmetric_count
+}
+
+func is_symmetric(num int) bool{
+	s := strconv.Itoa(num)
+	
+	if len(s) % 2 != 0{
+		return false
+	}
+	left_sum := 0
+	right_sum := 0
+
+	for i := 0; i < len(s) / 2; i++{
+		left_sum += int(s[i] - '0')
+		right_sum += int(s[len(s) - 1 - i] - '0')
+	}
+
+	return left_sum == right_sum
 }
