@@ -109,3 +109,17 @@ func is_symmetric(num int) bool{
 
 	return left_sum == right_sum
 }
+
+// https://leetcode.com/problems/plus-one/?envType=problem-list-v2&envId=array
+// python Solution: LeetCode/easy/plus_one_066.py
+
+func PlusOne(digits []int) []int {
+	for i := len(digits) - 1; i >= 0; i-- {
+		if digits[i] < 9 {
+			digits[i]++
+			return digits
+		}
+		digits[i] = 0
+	}
+	return append([]int{1}, digits...)
+}
