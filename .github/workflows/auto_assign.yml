@@ -1,22 +1,21 @@
 # Set to true to add reviewers to PRs
 addReviewers: true
 
-# Set to 'author' to add PR's author as an assignee
-addAssignees: True  # Since you are handling approvals, no need to auto-assign anyone else
+# Set to 'author' to auto-assign the PR's author
+addAssignees: author
 
-# A list of reviewers to be added to PRs (GitHub username)
+# A list of reviewers to be added to PRs (GitHub usernames)
 reviewers:
   - WazedKhan
   - WazedKhan-Repliq
 
-# A number of reviewers added to the PR
-# Set 0 to add all the reviewers (default: 0)
-numberOfReviewers: 1  # Only one reviewer (you)
+# Number of reviewers to randomly assign (set 0 to assign all listed)
+numberOfReviewers: 1
 
-# No additional assignees since you handle everything
+# No additional assignees besides the PR author
 numberOfAssignees: 0
 
-# A list of keywords to skip the process if PR's title includes it
+# Keywords to skip assigning reviewers/assignees
 skipKeywords:
   - wip
   - draft
