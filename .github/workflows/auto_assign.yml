@@ -1,21 +1,24 @@
 # Set to true to add reviewers to PRs
-addReviewers: true
+name: Auto Assign
 
-# Set to 'author' to auto-assign the PR's author
-addAssignees: author
+on:
+  pull_request:
+    types: [opened, reopened, ready_for_review]
 
-# A list of reviewers to be added to PRs (GitHub usernames)
-reviewers:
-  - WazedKhan
-  - WazedKhan-Repliq
-
-# Number of reviewers to randomly assign (set 0 to assign all listed)
-numberOfReviewers: 1
-
-# No additional assignees besides the PR author
-numberOfAssignees: 0
-
-# Keywords to skip assigning reviewers/assignees
-skipKeywords:
-  - wip
-  - draft
+jobs:
+  auto-assign:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Auto Assign Reviewers and Assignees
+        uses: kentaro-m/auto-assign-action@v1
+        with:
+          addReviewers: true
+          addAssignees: author
+          reviewers: |
+            WazedKhan
+            WazedKhan-Repliq
+          numberOfReviewers: 1
+          numberOfAssignees: 0
+          skipKeywords: |
+            wip
+            draft
