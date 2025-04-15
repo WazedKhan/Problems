@@ -1,6 +1,9 @@
 package main
 
-import "strconv"
+import (
+	"sort"
+	"strconv"
+)
 
 // URL: https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/?envType=problem-list-v2&envId=array
 // Python Solution: LeetCode/remove_duplicates.py
@@ -122,4 +125,14 @@ func PlusOne(digits []int) []int {
 		digits[i] = 0
 	}
 	return append([]int{1}, digits...)
+}
+
+// # https://leetcode.com/problems/merge-sorted-array/?envType=problem-list-v2&envId=array
+// python Solution: LeetCode/easy/merge_sorted_array_88.py
+
+func Merge(nums1 []int, m int, nums2 []int, n int)  {
+    for i :=0; i < n; i++{
+		nums1[m+i] = nums2[i]
+	}
+	sort.Ints(nums1)
 }
