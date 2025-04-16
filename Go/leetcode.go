@@ -160,3 +160,20 @@ func MergeOptimal(nums1 []int, m int, nums2 []int, n int) {
 		k --
 	}
 }
+
+func Generate(numRows int) [][]int{
+	triangle := [][]int{{1}}
+
+	for i := 1; i < numRows; i++ {
+		prev_rows := triangle[i - 1]
+		row := []int{1}
+
+		for j := 1; j < i; j ++ {
+			row = append(row, (prev_rows[j - 1] + prev_rows[j]))
+		}
+
+		row = append(row, 1)
+		triangle = append(triangle, row)
+	}
+	return triangle
+}
