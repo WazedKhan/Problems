@@ -51,4 +51,31 @@ def test_merge_sorted_array_88(num1, n, num2, m, expected):
 
     sol.merge(num1, n, num2, m)
     assert num1 == expected
-    
+
+
+@pytest.mark.parametrize(
+    "numRows, expected",
+    [
+        (1, [[1]]),
+        (2, [[1], [1, 1]]),
+        (3, [[1], [1, 1], [1, 2, 1]]),
+        (4, [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1]]),
+        (5, [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1]]),
+        (
+            6,
+            [
+                [1],
+                [1, 1],
+                [1, 2, 1],
+                [1, 3, 3, 1],
+                [1, 4, 6, 4, 1],
+                [1, 5, 10, 10, 5, 1],
+            ],
+        ),
+    ],
+)
+def test_generate(numRows, expected):
+    from LeetCode.easy.pascals_triangle_118 import Solution
+
+    solution = Solution()
+    assert solution.generate(numRows) == expected
