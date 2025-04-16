@@ -1,6 +1,6 @@
 from typing import List
 
-import pytest  # type: ignore
+import pytest
 
 
 @pytest.mark.parametrize("input_value, expected", [(19, True), (2, False)])
