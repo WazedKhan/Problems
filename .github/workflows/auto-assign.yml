@@ -7,13 +7,17 @@ on:
 jobs:
   auto-assign:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Auto Assign Reviewers and Assignees
-        uses: kentaro-m/auto-assign-action@v1.2.2
+      - name: Auto Assign
+        uses: kentaro-m/auto-assign@v1
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          configuration-path: .github/auto_assign.yml
+          addReviewers: true
+          addAssignees: author
+          reviewers: |
+            WazedKhan
+            WazedKhan-Repliq
+          numberOfReviewers: 1
+          numberOfAssignees: 0
+          skipKeywords: |
+            wip
+            draft
