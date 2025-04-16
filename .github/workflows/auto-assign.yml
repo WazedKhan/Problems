@@ -8,8 +8,8 @@ jobs:
   auto-assign:
     runs-on: ubuntu-latest
     steps:
-      - name: Auto Assign Reviewers and Assignees
-        uses: kentaro-m/auto-assign-action@v1.2.2
+      - name: Auto Assign
+        uses: kentaro-m/auto-assign@v1
         with:
           addReviewers: true
           addAssignees: author
