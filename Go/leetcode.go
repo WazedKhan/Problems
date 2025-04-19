@@ -1,6 +1,7 @@
 package main
 
 import (
+	"math"
 	"sort"
 	"strconv"
 )
@@ -176,4 +177,20 @@ func Generate(numRows int) [][]int{
 		triangle = append(triangle, row)
 	}
 	return triangle
+}
+
+func MaxProfit(prices []int) int {
+    min_price := math.MaxInt
+	best_profit := 0
+
+	for _, value := range prices{
+		if min_price > value{
+			min_price = value
+		}
+
+		if value - min_price > best_profit{
+			best_profit = value - min_price
+		}
+	}
+	return best_profit
 }
