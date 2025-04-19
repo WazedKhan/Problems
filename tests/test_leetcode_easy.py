@@ -79,3 +79,22 @@ def test_generate(numRows, expected):
 
     solution = Solution()
     assert solution.generate(numRows) == expected
+
+
+@pytest.mark.parametrize(
+    "prices, expected",
+    [
+        ([7, 1, 5, 3, 6, 4], 5),  # Buy at 1, sell at 6
+        ([7, 6, 4, 3, 1], 0),  # Prices only go down, no profit
+        ([2, 7, 1, 5, 4], 5),  # Buy at 2, sell at 7
+        ([1, 2], 1),  # Smallest input with a profit
+        ([2, 1, 2, 1, 2], 1),  # Multiple valleys and peaks
+        ([3, 3, 3, 3, 3], 0),  # All same prices
+        ([1], 0),  # Only one day
+    ],
+)
+def test_max_profit(prices, expected):
+    from LeetCode.easy.best_time_buy_sell_stock_121 import Solution
+
+    solution = Solution()
+    assert solution.maxProfit(prices) == expected

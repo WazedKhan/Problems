@@ -101,3 +101,26 @@ func TestGenerate(t *testing.T) {
 		}
 	}
 }
+
+func TestMaxProfit(t *testing.T) {
+	tests := []struct {
+		prices   []int
+		expected int
+	}{
+		{[]int{7, 1, 5, 3, 6, 4}, 5},
+		{[]int{7, 6, 4, 3, 1}, 0},
+		{[]int{2, 7, 1, 5, 4}, 5},
+		{[]int{3, 2, 6, 1, 4}, 4},
+		{[]int{}, 0},
+		{[]int{1}, 0},
+		{[]int{2, 1}, 0},
+		{[]int{1, 2}, 1},
+	}
+
+	for _, test := range tests {
+		got := MaxProfit(test.prices)
+		if got != test.expected {
+			t.Errorf("maxProfit(%v) = %d; want %d", test.prices, got, test.expected)
+		}
+	}
+}
