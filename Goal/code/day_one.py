@@ -28,3 +28,27 @@ class Solution:
                 return [hash_map[temp], index]
             else:
                 hash_map[nums[index]] = index
+
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        """
+        Given:
+        - `nums`: List of integers
+        Returns:
+        - Boolean indicating if there are any duplicates in the list.
+        Problem:
+        - Check if there are any duplicate integers in the list.
+        Thought Process:
+        - Use a set to track seen integers.
+        Approach:
+        - Iterate through the list and check if each integer has been seen before.
+        Solution:
+        - If an integer is found in the set, return True.
+        - If the loop completes without finding duplicates, return False.
+        """
+        seen_integer = set()
+        for num in nums:
+            if num in seen_integer:
+                return True
+            else:
+                seen_integer.add(num)
+        return False
