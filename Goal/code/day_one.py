@@ -28,6 +28,7 @@ class Solution:
                 return [hash_map[temp], index]
             else:
                 hash_map[nums[index]] = index
+        return [0, 0]
 
     def containsDuplicate(self, nums: List[int]) -> bool:
         """
