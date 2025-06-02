@@ -53,3 +53,19 @@ class Solution:
             else:
                 seen_integer.add(num)
         return False
+
+    def isAnagram(self, s: str, t: str) -> bool:
+        if len(s) != len(t):
+            return False
+
+        s_hash_map = {}
+        t_hash_map = {}
+
+        for i in range(len(s)):
+            s_char = s[i]
+            t_char = t[i]
+
+            s_hash_map[s_char] = s_hash_map.get(s_char, 0) + 1
+            t_hash_map[t_char] = t_hash_map.get(t_char, 0) + 1
+
+        return s_hash_map == t_hash_map
