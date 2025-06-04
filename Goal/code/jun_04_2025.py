@@ -1,4 +1,4 @@
-#User function Template for python3
+# User function Template for python3
 class Solution:
     # Function to find the maximum sum of a subarray of size k
     def maximumSumSubarrayBruteForce(self,arr,k):
@@ -16,7 +16,22 @@ class Solution:
 
         return max_sum
 
-arr = [100, 200, 300, 400]
-k = 2
-solution = Solution().maximumSumSubarray(arr, k)
-print("Maximum sum of subarray of size", k, "is:", solution)
+    def frequencySort(self, s: str) -> str:
+        hash_map = {}
+
+        for char in s:
+            if char in hash_map:
+                hash_map[char] += 1
+            else:
+                hash_map[char] = 1
+        sorted_chars = sorted(hash_map.items(), key=lambda item: item[1], reverse=True)
+        res = ""
+        for item in sorted_chars:
+            res += item[0] * item[1]
+
+        return res
+
+
+char = "tree"
+solution = Solution().frequencySort(s=char)
+print("Res: ", solution)
