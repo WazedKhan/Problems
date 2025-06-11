@@ -32,6 +32,20 @@ class Solution:
                     return res
         return res
 
+    def topKFrequentHeap(self, nums: List[int], k: int) -> List[int]:
+        freq_map = Counter(nums)
+        heap = []
+
+        for num, freq in freq_map.items():
+            heapq.heappush(heap, (freq, num))
+            if len(heap) > k:
+                heapq.heappop(heap)
+
+        result = []
+        for freq, num in heap:
+            result.append(num)
+        return result
+
 
 # Example usage:
 nums = [1, 1, 1, 2, 2, 3]
@@ -42,3 +56,4 @@ print(f"Result - Top K frequent: {top_k}")  # Output should be [1, 2] or similar
 print(f"Result - Top K frequent HeapQ: {Solution().topKFrequentHeapQ(nums=nums, k=k)}")
 
 print(f"Result - Top K frequent Bucket: {Solution().topKFrequentBucket(nums=nums, k=k)}")
+print(f"Result - Top K frequent Bucket: {Solution().topKFrequentHeap(nums=nums, k=k)}")
