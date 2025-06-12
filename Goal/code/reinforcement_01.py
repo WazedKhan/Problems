@@ -46,14 +46,38 @@ class Solution:
             result.append(num)
         return result
 
+    def frequencySort(self, s: str) -> str:
+        freq_map = Counter(s)
 
-# Example usage:
-nums = [1, 1, 1, 2, 2, 3]
-k = 2
-top_k = Solution().topKFrequent(nums=nums, k=k)
-print(f"Result - Top K frequent: {top_k}")  # Output should be [1, 2] or similar based on the implementation
+        sorted_tuple = sorted(freq_map.items(), key=lambda items: items[1], reverse=True)
+        res = ""
+        for item in sorted_tuple:
+            res += item[0] * item[1]
 
-print(f"Result - Top K frequent HeapQ: {Solution().topKFrequentHeapQ(nums=nums, k=k)}")
+        return res
 
-print(f"Result - Top K frequent Bucket: {Solution().topKFrequentBucket(nums=nums, k=k)}")
-print(f"Result - Top K frequent Bucket: {Solution().topKFrequentHeap(nums=nums, k=k)}")
+    def frequencySortBucket(self, s: str) -> str:
+        freq_map = Counter(s)
+
+        bucket = [[] for _ in range(len(s) + 1)]
+
+        for char, freq in freq_map.items():
+            bucket[freq].append(char)
+
+        res = []
+        for bucket_id in range(len(bucket) - 1, 0, -1):
+            for item in bucket[bucket_id]:
+                res.append(item * bucket_id)
+
+        return "".join(res)
+
+    def frequencySortLexicalTie(self, s: str) -> str:
+        freq_map = Counter(s)
+
+        sorted_items = sorted(freq_map.items(), key=lambda item: (-item[1], item[0]))
+
+        res = []
+        for item in sorted_items:
+            res.append(item[0] * item[1])
+
+        return "".join(res)
