@@ -1,3 +1,4 @@
+from collections import deque
 from typing import List
 
 
@@ -37,14 +38,34 @@ class Solution:
 
         return arr[left : left + k]
 
+    def maxSlidingWindowB(self, nums: List[int], k: int) -> List[int]:
+        res = []
 
-solution = Solution()
-numbers = [2, 3, 4]
-target = 6
+        for i in range(len(nums) - k + 1):
+            res.append(max(nums[i : i + k]))
+        return res
 
-arr = [1, 2, 3, 4, 5]
-k = 4
-x = 3
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        dq = deque()
+        res = []
 
-print("Two Sum ll Result:", solution.twoSum(numbers, target))
-print("Find Closest Elements Result:", solution.findClosestElements(arr, k, x))
+        for idx, val in enumerate(nums):
+            if dq and dq[0] <= idx - k:
+                dq.popleft()
+
+            while dq and nums[dq[-1]] < val:
+                dq.pop()
+
+            dq.append(idx)
+
+            if idx >= k - 1:
+                res.append(nums[dq[0]])
+
+        return res
+
+
+nums = [1, 3, -1, -3, 5, 3, 6, 7]
+k = 3
+
+solution = Solution().maxSlidingWindow(nums, k)
+print(solution)  # Output: [3, 3, 5, 5, 6, 7]
