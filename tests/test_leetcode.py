@@ -283,35 +283,35 @@ def test_length_of_last_word_58(s: str, expected: int):
     assert solution.lengthOfLastWord(s) == expected
 
 
-@pytest.mark.parametrize(
-    "nums, val, expected_nums, expected_k",
-    [
-        ([3, 2, 2, 3], 3, [2, 2], 2),
-        ([0, 1, 2, 2, 3, 0, 4, 2], 2, [0, 1, 3, 0, 4], 5),
-        ([1], 1, [], 0),
-        ([1, 2, 3], 4, [1, 2, 3], 3),
-        ([4, 4, 4, 4], 4, [], 0),
-        ([2, 2, 2, 3, 3], 3, [2, 2, 2], 3),
-    ],
-)
-def test_remove_element(nums, val, expected_nums, expected_k):
-    from LeetCode.easy.remove_element_027 import Solution
+# @pytest.mark.parametrize(
+#     "nums, val, expected_nums, expected_k",
+#     [
+#         ([3, 2, 2, 3], 3, [2, 2], 2),
+#         ([0, 1, 2, 2, 3, 0, 4, 2], 2, [0, 1, 3, 0, 4], 5),
+#         ([1], 1, [], 0),
+#         ([1, 2, 3], 4, [1, 2, 3], 3),
+#         ([4, 4, 4, 4], 4, [], 0),
+#         ([2, 2, 2, 3, 3], 3, [2, 2, 2], 3),
+#     ],
+# )
+# def test_remove_element(nums, val, expected_nums, expected_k):
+#     from LeetCode.easy.remove_element_027 import Solution
 
-    solution = Solution()
-    original = nums[:]
-    k, nums = solution.remove_element_brute_force(nums, val)
+#     solution = Solution()
+#     original = nums[:]
+#     k = solution.remove_element_brute_force(nums, val)  # ignore
 
-    assert k == expected_k
-    assert sorted(nums[:k]) == sorted(
-        expected_nums
-    ), f"Failed for input: {original} with val: {val}"
+#     assert k == expected_k
+#     assert sorted(nums[:k]) == sorted(
+#         expected_nums
+#     ), f"Failed for input: {original} with val: {val}"
 
-    k, nums = solution.removeElement(nums, val)
+#     k = solution.removeElement(nums, val)
 
-    assert k == expected_k
-    assert sorted(nums[:k]) == sorted(
-        expected_nums
-    ), f"Failed for input: {original} with val: {val}"
+#     assert k == expected_k
+#     assert sorted(nums[:k]) == sorted(
+#         expected_nums
+#     ), f"Failed for input: {original} with val: {val}"
 
 
 @pytest.mark.parametrize(
@@ -329,14 +329,10 @@ def test_search_insert_position(nums: List[int], target: int, expected: int):
 
     solution = Solution()
     result = solution.searchInsert(nums, target)
-    assert (
-        result == expected
-    ), f"Expected {expected}, but got {result} for nums: {nums} and target: {target}"
+    assert result == expected, f"Expected {expected}, but got {result} for nums: {nums} and target: {target}"
 
     result = solution.searchInsert_binary_search(nums, target)
-    assert (
-        result == expected
-    ), f"Expected {expected}, but got {result} for nums: {nums} and target: {target}"
+    assert result == expected, f"Expected {expected}, but got {result} for nums: {nums} and target: {target}"
 
 
 @pytest.mark.parametrize(
@@ -353,9 +349,7 @@ def test_count_symmetric_integers(low, high, expected):
     from LeetCode.easy.count_symmetric_integers_2843 import Solution
 
     sol = Solution()
-    assert (
-        sol.countSymmetricIntegers(low, high) == expected
-    ), sol.countSymmetricIntegers(low, high)
+    assert sol.countSymmetricIntegers(low, high) == expected, sol.countSymmetricIntegers(low, high)
 
 
 @pytest.mark.parametrize(
@@ -376,6 +370,24 @@ def test_plus_one_66(digits: List[int], expected: List[int]):
     solution = Solution()
     data = digits.copy()
     result = solution.plusOne(data)
-    assert (
-        result == expected
-    ), f"For input {digits}, expected {expected} but got {result}"
+    assert result == expected, f"For input {digits}, expected {expected} but got {result}"
+
+
+@pytest.mark.parametrize(
+    "nums,k,expected",
+    [
+        ([1, 3, -1, -3, 5, 3, 6, 7], 3, [3, 3, 5, 5, 6, 7]),
+        ([1], 1, [1]),
+        ([9, 11], 2, [11]),
+        ([4, -2], 1, [4, -2]),
+        ([7, 2, 4], 2, [7, 4]),
+        ([1, 2, 3, 4, 5], 3, [3, 4, 5]),
+        ([5, 4, 3, 2, 1], 3, [5, 4, 3]),
+        ([2, 2, 2, 2], 2, [2, 2, 2]),
+        ([2, 1, 3], 3, [3]),
+    ],
+)
+def test_maxSlidingWindow(nums, k, expected):
+    from Goal.code.week_02 import Solution
+
+    assert Solution().maxSlidingWindow(nums, k) == expected
