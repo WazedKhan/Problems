@@ -3,6 +3,7 @@ __pycache__/
 env
 .env
 .vscode/
+.idea
 
 # Test-related files
 coverage/
