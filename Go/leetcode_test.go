@@ -136,7 +136,7 @@ func Test_RomanToInt(t *testing.T) {
 		{"III", 3},
 		{"IV", 4},
 		{"IX", 9},
-		{"LVIII", 5},
+		{"LVIII", 58},
 		{"MCMXCIV", 1994},
 	}
 
