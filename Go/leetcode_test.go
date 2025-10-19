@@ -124,3 +124,26 @@ func TestMaxProfit(t *testing.T) {
 		}
 	}
 }
+
+// https://leetcode.com/problems/roman-to-integer/description/
+// python Solution: LeetCode/roman_to_int.py
+
+func Test_RomanToInt(t *testing.T) {
+	tests := []struct {
+		s        string
+		expected int
+	}{
+		{"III", 3},
+		{"IV", 4},
+		{"IX", 9},
+		{"LVIII", 5},
+		{"MCMXCIV", 1994},
+	}
+
+	for _, test := range tests {
+		got := RomanToInt(test.s)
+		if got != test.expected {
+			t.Errorf("romanToInt(%s) = %d; want %d", test.s, got, test.expected)
+		}
+	}
+}

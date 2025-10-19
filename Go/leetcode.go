@@ -194,3 +194,23 @@ func MaxProfit(prices []int) int {
 	}
 	return best_profit
 }
+
+// https://leetcode.com/problems/roman-to-integer/description/
+// python Solution: LeetCode/roman_to_int.py
+// 13. Roman to Integer
+
+func RomanToInt(s string) int {
+	romToIntMap := map[string]int {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+	var previousRom, currentRom int
+	result := 0
+	for i := len(s) - 1; i >= 0; i-- {
+		currentRom = romToIntMap[string(s[i])]
+		if currentRom < previousRom {
+			result -= currentRom
+		} else {
+			result += currentRom
+		}
+		previousRom = currentRom
+	}
+	return result
+}
