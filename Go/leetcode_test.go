@@ -147,3 +147,28 @@ func Test_RomanToInt(t *testing.T) {
 		}
 	}
 }
+
+// https://leetcode.com/problems/valid-parentheses/
+// 20. Valid Parentheses
+
+func Test_ValidParentheses(t *testing.T) {
+	tests := []struct {
+		s        string
+		expected bool
+	}{
+		{"()", true},
+		{"(){}[]", true},
+		{"(]", false},
+		{"([])", true},
+		{"([)]", false},
+		{"(){}}{", false},
+	}
+
+	for _, test := range tests {
+		got := IsValidParentheses(test.s)
+		if got != test.expected {
+			t.Errorf("for %s got %t but want %t", test.s, got, test.expected)
+		}
+	}
+
+}
