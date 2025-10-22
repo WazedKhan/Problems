@@ -25,39 +25,39 @@ func RemoveDuplicates(nums []int) int {
 // https://leetcode.com/problems/remove-element/description/?envType=problem-list-v2&envId=array
 // Python Solution: LeetCode/easy/remove_element_027.py
 
-func RemoveElements(nums []int, val int) int{
-	if len(nums) == 0{
-        return 0
-    }
+func RemoveElements(nums []int, val int) int {
+	if len(nums) == 0 {
+		return 0
+	}
 
-    k := 0
-    for _, value := range nums{
-        if value != val{
-            nums[k] = value
-            k ++
-        }
-    }
-    return k
+	k := 0
+	for _, value := range nums {
+		if value != val {
+			nums[k] = value
+			k++
+		}
+	}
+	return k
 }
 
 // https://leetcode.com/problems/search-insert-position/description/?envType=problem-list-v2&envId=array
 // Python Solution: LeetCode/easy/search_insert_position_035.py
 
 func SearchInsert(nums []int, target int) int {
-    if nums[0] >= target{
+	if nums[0] >= target {
 		return 0
 	}
 
-	for index := 0; index < len(nums)-1; index++{
-		if nums[index] == target{
+	for index := 0; index < len(nums)-1; index++ {
+		if nums[index] == target {
 			return index
 		}
 
-		if nums[index] < target && nums[index+1] > target{
+		if nums[index] < target && nums[index+1] > target {
 			return index + 1
 		}
 
-		if nums[len(nums)-1] == target{
+		if nums[len(nums)-1] == target {
 			return len(nums) - 1
 		}
 	}
@@ -68,47 +68,46 @@ func SearchInsert(nums []int, target int) int {
 func SearchInsertBinarySearch(nums []int, target int) int {
 	left, right := 0, len(nums)-1
 
-	for left <= right{
+	for left <= right {
 		mid := (left + right) / 2
-		if nums[mid] == target{
+		if nums[mid] == target {
 			return mid
 		}
-		if nums[mid] < target{
+		if nums[mid] < target {
 			left = mid + 1
-		} else{
+		} else {
 			right = mid - 1
 		}
 	}
-	if left == len(nums){
+	if left == len(nums) {
 		return len(nums)
 	}
 	return left
 }
-
 
 func CountSymmetricIntegers(low int, high int) int {
 	symmetric_count := 0
 
 	for i := low; i <= high; i++ {
 		if is_symmetric(i) {
-			symmetric_count ++
+			symmetric_count++
 		}
 	}
 	return symmetric_count
 }
 
-func is_symmetric(num int) bool{
+func is_symmetric(num int) bool {
 	s := strconv.Itoa(num)
-	
-	if len(s) % 2 != 0{
+
+	if len(s)%2 != 0 {
 		return false
 	}
 	left_sum := 0
 	right_sum := 0
 
-	for i := 0; i < len(s) / 2; i++{
+	for i := 0; i < len(s)/2; i++ {
 		left_sum += int(s[i] - '0')
-		right_sum += int(s[len(s) - 1 - i] - '0')
+		right_sum += int(s[len(s)-1-i] - '0')
 	}
 
 	return left_sum == right_sum
@@ -131,46 +130,45 @@ func PlusOne(digits []int) []int {
 // # https://leetcode.com/problems/merge-sorted-array/?envType=problem-list-v2&envId=array
 // python Solution: LeetCode/easy/merge_sorted_array_88.py
 
-func Merge(nums1 []int, m int, nums2 []int, n int)  {
-    for i :=0; i < n; i++{
+func Merge(nums1 []int, m int, nums2 []int, n int) {
+	for i := 0; i < n; i++ {
 		nums1[m+i] = nums2[i]
 	}
 	sort.Ints(nums1)
 }
 
-
 func MergeOptimal(nums1 []int, m int, nums2 []int, n int) {
-	i := m -1
+	i := m - 1
 	j := n - 1
-	k := m + n -1
+	k := m + n - 1
 
-	for i >= 0 && j >=0 {
+	for i >= 0 && j >= 0 {
 		if nums1[i] > nums2[j] {
 			nums1[k] = nums1[i]
-			i --
-		}else{
+			i--
+		} else {
 			nums1[k] = nums2[j]
-			j --
+			j--
 		}
-		k --
+		k--
 	}
 
 	for j >= 0 {
 		nums1[k] = nums2[j]
-		j --
-		k --
+		j--
+		k--
 	}
 }
 
-func Generate(numRows int) [][]int{
+func Generate(numRows int) [][]int {
 	triangle := [][]int{{1}}
 
 	for i := 1; i < numRows; i++ {
-		prev_rows := triangle[i - 1]
+		prev_rows := triangle[i-1]
 		row := []int{1}
 
-		for j := 1; j < i; j ++ {
-			row = append(row, (prev_rows[j - 1] + prev_rows[j]))
+		for j := 1; j < i; j++ {
+			row = append(row, (prev_rows[j-1] + prev_rows[j]))
 		}
 
 		row = append(row, 1)
@@ -180,15 +178,15 @@ func Generate(numRows int) [][]int{
 }
 
 func MaxProfit(prices []int) int {
-    min_price := math.MaxInt
+	min_price := math.MaxInt
 	best_profit := 0
 
-	for _, value := range prices{
-		if min_price > value{
+	for _, value := range prices {
+		if min_price > value {
 			min_price = value
 		}
 
-		if value - min_price > best_profit{
+		if value-min_price > best_profit {
 			best_profit = value - min_price
 		}
 	}
@@ -200,7 +198,7 @@ func MaxProfit(prices []int) int {
 // 13. Roman to Integer
 
 func RomanToInt(s string) int {
-	romToIntMap := map[string]int {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+	romToIntMap := map[string]int{"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
 	var previousRom, currentRom int
 	result := 0
 	for i := len(s) - 1; i >= 0; i-- {
@@ -213,4 +211,31 @@ func RomanToInt(s string) int {
 		previousRom = currentRom
 	}
 	return result
+}
+
+// https://leetcode.com/problems/valid-parentheses/
+// Python Solution: LeetCode/valid_parentheses.py
+// 20. Valid Parentheses
+
+func IsValidParentheses(s string) bool {
+	parenthesesMap := map[string]string{
+		")": "(",
+		"}": "{",
+		"]": "[",
+	}
+	var stack []string
+	for _, val := range s {
+		stackLen := len(stack)
+		value, ok := parenthesesMap[string(val)]
+		if ok && stackLen > 0 && value == stack[stackLen-1] {
+			stack = stack[:stackLen-1]
+		} else {
+			stack = append(stack, string(val))
+		}
+	}
+
+	if len(stack) > 0 {
+		return false
+	}
+	return true
 }
