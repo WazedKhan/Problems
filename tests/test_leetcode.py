@@ -404,3 +404,240 @@ def test_hasSameDigits(s, expected):
     from LeetCode.easy.has_same_digits_3461 import Solution
 
     assert Solution().hasSameDigits(s) == expected
+
+
+# Additional comprehensive tests for hasSameDigits (Problem 3461)
+@pytest.mark.parametrize(
+    "s, expected",
+    [
+        # Edge case: strings already of length 2
+        ("11", True),   # Same digits, should return True immediately
+        ("00", True),   # Both zeros
+        ("99", True),   # Both nines
+        ("12", False),  # Different digits
+        ("10", False),  # Zero and one
+        ("89", False),  # Different digits at boundary
+        
+        # Three digit strings
+        ("111", True),  # All same -> "22" -> True
+        ("123", False), # Different pattern
+        ("555", True),  # All fives
+        ("999", True),  # All nines -> "88" (9+9=18, 8+8=16, mod gives "88") -> True
+        ("100", False), # Mixed with zero
+        ("246", False), # Even progression
+        
+        # Four digit strings
+        ("1111", True), # All ones
+        ("1234", False),
+        ("8888", True), # All eights
+        ("0000", True), # All zeros
+        ("1212", True), # Alternating pattern
+        ("5050", True), # Alternating with zero
+        ("9999", True), # All nines
+        
+        # Five digit strings
+        ("12345", False),
+        ("11111", True),  # All same
+        ("55555", True),  # All fives
+        ("12321", True),  # Palindrome pattern
+        ("98765", False),
+        
+        # Six digit strings
+        ("123456", False),
+        ("111111", True), # All same
+        ("654321", False),
+        ("102030", False),
+        ("999999", True), # All nines
+        
+        # Seven digit strings
+        ("1234567", False),
+        ("1111111", True),
+        ("7777777", True),
+        ("9876543", False),
+        
+        # Eight digit strings
+        ("12345678", False),
+        ("11111111", True),
+        ("88888888", True),
+        ("12341234", False),
+        
+        # Longer strings (9-10 digits)
+        ("123456789", False),
+        ("111111111", True),
+        ("987654321", False),
+        ("1234567890", False),
+        
+        # Patterns with zeros
+        ("1000", False),
+        ("0001", False),
+        ("0101", False),
+        ("0000", True),
+        
+        # High digit patterns
+        ("9876", False),
+        ("8765", False),
+        ("7890", False),
+        
+        # Repeating patterns
+        ("1212", True),
+        ("2323", True),
+        ("121212", True),
+        ("232323", True),
+        
+        # Mixed patterns
+        ("135", False),
+        ("246", False),
+        ("369", False),
+        ("147", False),
+        ("258", False),
+        
+        # Special sequences
+        ("505", False),
+        ("606", False),
+        ("707", False),
+        ("808", True),
+        ("909", False),
+        
+        # Additional boundary cases
+        ("19", False),
+        ("91", False),
+        ("09", False),
+        ("90", False),
+        ("45", False),
+        ("54", False),
+        ("22", True),
+        ("33", True),
+        ("44", True),
+        ("55", True),
+        ("66", True),
+        ("77", True),
+        ("88", True),
+    ],
+)
+def test_hasSameDigits_comprehensive(s, expected):
+    """
+    Comprehensive test suite for hasSameDigits function.
+    Tests various string lengths, patterns, and edge cases.
+    
+    The algorithm repeatedly sums adjacent pairs of digits (mod 10)
+    until only 2 digits remain, then checks if they are equal.
+    """
+    from LeetCode.easy.has_same_digits_3461 import Solution
+
+    solution = Solution()
+    result = solution.hasSameDigits(s)
+    assert result == expected, f"For input '{s}', expected {expected} but got {result}"
+
+
+@pytest.mark.parametrize(
+    "s",
+    [
+        "22",
+        "33",
+        "44",
+        "55",
+        "66",
+        "77",
+        "88",
+        "99",
+        "00",
+        "11",
+    ],
+)
+def test_hasSameDigits_equal_two_digits(s):
+    """
+    Test all cases where input is already 2 equal digits.
+    These should all return True without any computation.
+    """
+    from LeetCode.easy.has_same_digits_3461 import Solution
+
+    solution = Solution()
+    assert solution.hasSameDigits(s) is True
+
+
+@pytest.mark.parametrize(
+    "s",
+    [
+        "01", "02", "03", "04", "05", "06", "07", "08", "09",
+        "12", "13", "14", "15", "16", "17", "18", "19",
+        "23", "24", "25", "26", "27", "28", "29",
+        "34", "35", "36", "37", "38", "39",
+        "45", "46", "47", "48", "49",
+        "56", "57", "58", "59",
+        "67", "68", "69",
+        "78", "79",
+        "89",
+    ],
+)
+def test_hasSameDigits_unequal_two_digits(s):
+    """
+    Test cases where input is 2 different digits.
+    These should all return False without any computation.
+    """
+    from LeetCode.easy.has_same_digits_3461 import Solution
+
+    solution = Solution()
+    assert solution.hasSameDigits(s) is False
+
+
+@pytest.mark.parametrize(
+    "digit",
+    ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
+)
+def test_hasSameDigits_all_same_digit_repeated(digit):
+    """
+    Test strings where the same digit is repeated multiple times.
+    All such cases should return True regardless of length.
+    """
+    from LeetCode.easy.has_same_digits_3461 import Solution
+
+    solution = Solution()
+    # Test different lengths of the same digit
+    for length in [3, 4, 5, 6, 7, 8]:
+        s = digit * length
+        result = solution.hasSameDigits(s)
+        assert result is True, f"String '{s}' (all {digit}s) should return True but got {result}"
+
+
+@pytest.mark.parametrize(
+    "s, expected",
+    [
+        # Ascending sequences
+        ("012", False),
+        ("0123", False),
+        ("01234", False),
+        
+        # Descending sequences
+        ("987", False),
+        ("9876", False),
+        ("98765", False),
+        
+        # Alternating low/high
+        ("0909", False),
+        ("1818", True),
+        ("2727", True),
+        
+        # Palindromes
+        ("121", False),
+        ("1221", True),
+        ("12321", True),
+        ("123321", True),
+        
+        # Powers of 2 pattern
+        ("1248", False),
+        ("2468", False),
+        
+        # Fibonacci-like
+        ("1123", False),
+        ("112358", False),
+    ],
+)
+def test_hasSameDigits_special_patterns(s, expected):
+    """
+    Test special number patterns including sequences, alternations, and palindromes.
+    """
+    from LeetCode.easy.has_same_digits_3461 import Solution
+
+    solution = Solution()
+    result = solution.hasSameDigits(s)
+    assert result == expected, f"For pattern '{s}', expected {expected} but got {result}"
