@@ -8,8 +8,3 @@ class Solution:
 
             s = result
         return s[0] == s[1]
-
-
-s = "34789"
-solution = Solution().hasSameDigits(s)
-print(f"Result for value {s}: {solution}")

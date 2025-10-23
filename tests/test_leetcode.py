@@ -392,6 +392,7 @@ def test_maxSlidingWindow(nums, k, expected):
 
     assert Solution().maxSlidingWindow(nums, k) == expected
 
+
 @pytest.mark.parametrize(
     "s, expected",
     [
@@ -399,7 +400,7 @@ def test_maxSlidingWindow(nums, k, expected):
         ("34789", False)
     ],
 )
-def testhasSameDigits(s, expected):
+def test_hasSameDigits(s, expected):
     from LeetCode.easy.has_same_digits_3461 import Solution
 
     assert Solution().hasSameDigits(s) == expected
