@@ -36,8 +36,3 @@ class Solution:
         right = right_sum % 10
 
         return left == right
-
-
-
-solution = Solution().coefficients("3902")
-print(f"Solution: {solution}")
