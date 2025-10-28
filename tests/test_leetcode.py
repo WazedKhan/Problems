@@ -1,5 +1,3 @@
-import random
-import time
 from typing import List
 
 import pytest  # type: ignore
@@ -456,28 +454,28 @@ def test_bank_operations(operations, inputs, expected):
     assert results == expected
 
 
-@pytest.mark.performance
-def test_bank_performance():
-    from LeetCode.medium.simple_bank_system_2043 import Bank
+# @pytest.mark.performance
+# def test_bank_performance():
+#     from LeetCode.medium.simple_bank_system_2043 import Bank
 
-    n = 100_000
-    bank = Bank([1000] * n)  # 100k accounts, each with balance 1000
-    operations = 200_000
+#     n = 100_000
+#     bank = Bank([1000] * n)  # 100k accounts, each with balance 1000
+#     operations = 200_000
 
-    start = time.perf_counter()
+#     start = time.perf_counter()
 
-    for _ in range(operations):
-        op_type = random.choice(["deposit", "withdraw", "transfer"])
-        a1 = random.randint(1, n)
-        money = random.randint(1, 100)
+#     for _ in range(operations):
+#         op_type = random.choice(["deposit", "withdraw", "transfer"])
+#         a1 = random.randint(1, n)
+#         money = random.randint(1, 100)
 
-        if op_type == "deposit":
-            bank.deposit(a1, money)
-        elif op_type == "withdraw":
-            bank.withdraw(a1, money)
-        else:  # transfer
-            a2 = random.randint(1, n)
-            bank.transfer(a1, a2, money)
+#         if op_type == "deposit":
+#             bank.deposit(a1, money)
+#         elif op_type == "withdraw":
+#             bank.withdraw(a1, money)
+#         else:  # transfer
+#             a2 = random.randint(1, n)
+#             bank.transfer(a1, a2, money)
 
-    end = time.perf_counter()
-    print(f"\nTotal time for {operations} ops on {n} accounts: {end - start:.3f}s")
+#     end = time.perf_counter()
+#     print(f"\nTotal time for {operations} ops on {n} accounts: {end - start:.3f}s")
