@@ -437,6 +437,16 @@ def test_hasSameDigits(s, expected):
     ],
 )
 def test_bank_operations(operations, inputs, expected):
+    """
+    Execute a sequence of Bank operations and assert the observed results match the expected outcomes.
+    
+    Parameters:
+        operations (List[str]): Ordered operation names; the first operation may be "Bank" to construct the Bank instance. Other valid names are "withdraw", "deposit", and "transfer".
+        inputs (List[tuple]): Arguments for each corresponding operation in `operations`. For "Bank" provide the constructor arguments; for other operations provide the method arguments.
+        expected (List[Optional[bool]]): Expected results for each operation in order (use `None` for the Bank constructor).
+    
+    The function raises an AssertionError if the actual results collected from performing the operations do not equal `expected`.
+    """
     from LeetCode.medium.simple_bank_system_2043 import Bank
 
     bank = None
