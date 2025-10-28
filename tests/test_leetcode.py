@@ -1,6 +1,11 @@
+import random
+import time
 from typing import List
 
 import pytest  # type: ignore
+
+# large input imports
+from ..inputs.simple_bank_system_2043 import large_input
 
 
 @pytest.mark.parametrize("input_value, expected", [(19, True), (2, False)])
@@ -395,12 +400,84 @@ def test_maxSlidingWindow(nums, k, expected):
 
 @pytest.mark.parametrize(
     "s, expected",
-    [
-        ("3902", True),
-        ("34789", False)
-    ],
+    [("3902", True), ("34789", False)],
 )
 def test_hasSameDigits(s, expected):
     from LeetCode.easy.has_same_digits_3461 import Solution
 
     assert Solution().hasSameDigits(s) == expected
+
+
+@pytest.mark.parametrize(
+    "operations, inputs, expected",
+    [
+        (
+            ["Bank", "withdraw", "transfer", "deposit", "transfer", "withdraw"],
+            [
+                [[10, 100, 20, 50, 30]],
+                [3, 10],
+                [5, 1, 20],
+                [5, 20],
+                [3, 4, 15],
+                [10, 50],
+            ],
+            [None, True, True, True, False, False],
+        ),
+        (
+            ["Bank", "deposit", "withdraw", "transfer"],
+            [[[100, 50]], [1, 50], [2, 20], [1, 2, 100]],
+            [None, True, True, True],
+        ),
+        (
+            ["Bank", "withdraw", "deposit"],
+            [[[30, 10, 50]], [1, 40], [2, 5]],
+            [None, False, True],
+        ),
+        *large_input,
+    ],
+)
+def test_bank_operations(operations, inputs, expected):
+    from LeetCode.medium.simple_bank_system_2043 import Bank
+
+    bank = None
+    results = []
+
+    for op, inp in zip(operations, inputs):
+        if op == "Bank":
+            bank = Bank(*inp)
+            results.append(None)
+        elif op == "withdraw":
+            results.append(bank.withdraw(*inp))
+        elif op == "deposit":
+            results.append(bank.deposit(*inp))
+        elif op == "transfer":
+            results.append(bank.transfer(*inp))
+
+    assert results == expected
+
+
+@pytest.mark.performance
+def test_bank_performance():
+    from LeetCode.medium.simple_bank_system_2043 import Bank
+
+    n = 100_000
+    bank = Bank([1000] * n)  # 100k accounts, each with balance 1000
+    operations = 200_000
+
+    start = time.perf_counter()
+
+    for _ in range(operations):
+        op_type = random.choice(["deposit", "withdraw", "transfer"])
+        a1 = random.randint(1, n)
+        money = random.randint(1, 100)
+
+        if op_type == "deposit":
+            bank.deposit(a1, money)
+        elif op_type == "withdraw":
+            bank.withdraw(a1, money)
+        else:  # transfer
+            a2 = random.randint(1, n)
+            bank.transfer(a1, a2, money)
+
+    end = time.perf_counter()
+    print(f"\nTotal time for {operations} ops on {n} accounts: {end - start:.3f}s")
