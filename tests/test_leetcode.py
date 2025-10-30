@@ -454,6 +454,21 @@ def test_bank_operations(operations, inputs, expected):
     assert results == expected
 
 
+@pytest.mark.parametrize(
+    "target, expected",
+    [
+        ([1, 2, 3, 2, 1], 3),
+        ([3, 1, 1, 2], 4),
+        ([3, 1, 5, 4, 2], 7),
+    ],
+)
+def test_min_number_operations(target, expected):
+    from LeetCode.hard.min_number_operations_1526 import Solution
+
+    minOperations = Solution().minNumberOperations
+    assert minOperations(target) == expected
+
+
 # @pytest.mark.performance
 # def test_bank_performance():
 #     from LeetCode.medium.simple_bank_system_2043 import Bank
