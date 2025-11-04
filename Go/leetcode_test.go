@@ -172,3 +172,24 @@ func Test_ValidParentheses(t *testing.T) {
 	}
 
 }
+
+// 217. Contains Duplicate
+// https://leetcode.com/problems/contains-duplicate/
+// Python Solution: LeetCode/ContainsDuplicate.py
+func Test_ContainsDuplicate(t *testing.T) {
+	tests := []struct {
+		nums []int
+		expected bool
+	}{
+		{[]int{1,2,3,1}, true},
+		{[]int{1,2,3,4}, false},
+		{[]int{1,1,1,3,3,4,3,2,4,2}, true},
+	}
+
+	for _, test := range tests {
+		got := ContainsDuplicate(test.nums)
+		if got != test.expected {
+			t.Errorf("for %v got %t but want %t", test.nums, got, test.expected)
+		}
+	}
+}
