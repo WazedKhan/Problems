@@ -239,3 +239,18 @@ func IsValidParentheses(s string) bool {
 	}
 	return true
 }
+
+// 217. Contains Duplicate
+// https://leetcode.com/problems/contains-duplicate/
+// Python Solution: LeetCode/ContainsDuplicate.py
+func ContainsDuplicate(nums []int) bool {
+	seen := make(map[int]bool)
+
+	for _, val := range nums {
+		if seen[val] {
+			return true
+		}
+		seen[val] = true
+	}
+	return false
+}
