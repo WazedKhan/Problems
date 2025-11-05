@@ -254,3 +254,23 @@ func ContainsDuplicate(nums []int) bool {
 	}
 	return false
 }
+
+// 3. Longest Substring Without Repeating Characters
+// https://leetcode.com/problems/longest-substring-without-repeating-characters/?envType=problem-list-v2&envId=hash-table
+func LengthOfLongestSubstring(s string) int {
+	charIndex := make(map[rune]int)
+	maxLen := 0
+	start := 0
+	for idx, ch := range []rune(s) {
+		if lastIndex, found := charIndex[ch]; found && lastIndex >= start {
+			start = lastIndex + 1
+		}
+		charIndex[ch] = idx
+
+		if idx-start+1 > maxLen {
+			maxLen = idx - start +1
+		}
+	}
+
+	return maxLen
+}
