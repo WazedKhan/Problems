@@ -234,10 +234,7 @@ func IsValidParentheses(s string) bool {
 		}
 	}
 
-	if len(stack) > 0 {
-		return false
-	}
-	return true
+	return len(stack) == 0
 }
 
 // 217. Contains Duplicate
