@@ -193,3 +193,30 @@ func Test_ContainsDuplicate(t *testing.T) {
 		}
 	}
 }
+
+// 3. Longest Substring Without Repeating Characters
+// https://leetcode.com/problems/longest-substring-without-repeating-characters/?envType=problem-list-v2&envId=hash-table
+func Test_LengthOfLongestSubstring(t *testing.T) {
+	tests := []struct {
+		s        string
+		expected int
+	}{
+		{"abcabcbb", 3},
+		{"bbbbb", 1},
+		{"pwwkew", 3},
+		{"", 0},
+		{"a", 1},
+		{"ab", 2},
+		{"dvdf", 3},
+		{"tmmzuxt", 5},
+		{" ", 1},
+	}
+
+	for _, test := range tests {
+		got := LengthOfLongestSubstring(test.s)
+		if got != test.expected {
+			t.Errorf("for %s got %d but want %d", test.s, got, test.expected)
+		}
+	}
+
+}
