@@ -1,3 +1,5 @@
+import heapq
+from collections import Counter
 from typing import List
 
 
@@ -29,7 +31,36 @@ class Solution:
 
         return list(hash_map.values())
 
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        counter = {}
+        for num in nums:
+            counter[num] = counter.get(num, 0) + 1
 
-strs = ["eat", "tea", "tan", "ate", "nat", "bat"]
-sol = Solution().groupAnagrams(strs=strs)
-print("sol: ", sol)
+        sorted_encounter: dict = dict(
+            sorted(
+                counter.items(),
+                key=lambda item: item[1],
+                reverse=True,
+            )[:k]
+        )
+        return list(sorted_encounter.keys())
+
+    def topKFrequentHeap(self, nums: List[int], k: int) -> List[int]:
+        freq_map = Counter(nums)
+        heap = []
+
+        for key, value in freq_map.items():
+            heapq.heappush(heap, (value, key))
+            if len(heap) > k:
+                heapq.heappop(heap)
+
+        res = []
+        for num in heap:
+            res.append(num[1])
+        return res
+
+
+nums = [3, 0, 1, 0]
+k = 1
+sol = Solution().topKFrequentHeap(nums=nums, k=k)
+print("topKFrequent: ", sol)
