@@ -5,35 +5,26 @@ import pytest
     "num1,n,num2,m,expected",
     [
         # Test case 1: Normal merge
-        ([1,2,3,0,0,0], 3, [2,5,6], 3, [1,2,2,3,5,6]),
-
+        ([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3, [1, 2, 2, 3, 5, 6]),
         # Test case 2: num1 is empty except for zeroes
         ([0], 0, [1], 1, [1]),
-
         # Test case 3: num2 is empty, num1 should remain the same
         ([1], 1, [], 0, [1]),
-
         # Test case 4: All elements in num2 are smaller
-        ([4,5,6,0,0,0], 3, [1,2,3], 3, [1,2,3,4,5,6]),
-
+        ([4, 5, 6, 0, 0, 0], 3, [1, 2, 3], 3, [1, 2, 3, 4, 5, 6]),
         # Test case 5: All elements in num2 are larger
-        ([1,2,3,0,0,0], 3, [4,5,6], 3, [1,2,3,4,5,6]),
-
+        ([1, 2, 3, 0, 0, 0], 3, [4, 5, 6], 3, [1, 2, 3, 4, 5, 6]),
         # Test case 6: num1 and num2 have same values
-        ([2,2,3,0,0,0], 3, [2,2,3], 3, [2,2,2,2,3,3]),
-
+        ([2, 2, 3, 0, 0, 0], 3, [2, 2, 3], 3, [2, 2, 2, 2, 3, 3]),
         # Test case 7: One list contains all duplicates
-        ([1,1,1,0,0,0], 3, [1,1,1], 3, [1,1,1,1,1,1]),
-
+        ([1, 1, 1, 0, 0, 0], 3, [1, 1, 1], 3, [1, 1, 1, 1, 1, 1]),
         # Test case 8: Large input where num2 fills all of num1
-        ([0,0,0], 0, [1,2,3], 3, [1,2,3]),
-
+        ([0, 0, 0], 0, [1, 2, 3], 3, [1, 2, 3]),
         # Test case 9: Already merged
-        ([1,2,3], 3, [], 0, [1,2,3]),
-
+        ([1, 2, 3], 3, [], 0, [1, 2, 3]),
         # Test case 10: Mix of negative numbers
-        ([-1,0,0,3,3,3,0,0,0], 6, [1,2,2], 3, [-1,0,0,1,2,2,3,3,3]),
-    ]
+        ([-1, 0, 0, 3, 3, 3, 0, 0, 0], 6, [1, 2, 2], 3, [-1, 0, 0, 1, 2, 2, 3, 3, 3]),
+    ],
 )
 def test_merge_sorted_array_88(num1, n, num2, m, expected):
     """
@@ -98,3 +89,28 @@ def test_max_profit(prices, expected):
 
     solution = Solution()
     assert solution.maxProfit(prices) == expected
+
+
+@pytest.mark.parametrize(
+    "s, expected",
+    [
+        ("dfa12321afd", 2),  # normal case → digits: {1,2,3}
+        ("abc1111", -1),  # only one unique digit
+        ("abc", -1),  # no digits
+        ("ck077", 0),  # digits: {0,7} → second highest = 0
+        ("sjhtz8344", 4),  # digits: {3,4,8} → second = 4
+        ("aaaa9998", 8),  # digits: {8,9} → second = 8
+        ("0", -1),  # only one digit
+        ("9876543210", 8),  # all digits → second = 8
+        ("2abc3d4e5f6", 5),  # scattered digits → second = 5
+        ("99", -1),  # duplicates only
+        ("a1b2c3d4e5", 4),  # increasing digits
+        ("5a5b5c5d5", -1),  # one unique digit seen multiple times
+        ("z1y0x9w", 1),  # digits: {0,1,9} → second = 1
+    ],
+)
+def test_second_highest(s, expected):
+    from LeetCode.easy.second_largest_digit_in_string_1796 import Solution
+
+    solution = Solution()
+    assert solution.secondHighest(s) == expected
