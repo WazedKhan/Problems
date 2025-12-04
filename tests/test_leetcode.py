@@ -469,28 +469,18 @@ def test_min_number_operations(target, expected):
     assert minOperations(target) == expected
 
 
-# @pytest.mark.performance
-# def test_bank_performance():
-#     from LeetCode.medium.simple_bank_system_2043 import Bank
+# LeetCode 11: Container with most water
+@pytest.mark.parametrize(
+    "height, expected",
+    [
+        ([1, 8, 6, 2, 5, 4, 8, 3, 7], 49),
+        ([1, 1], 1),
+        ([4, 3, 2, 1, 4], 16),
+        ([1, 2, 1], 2),
+    ],
+)
+def test_max_area(height, expected):
+    from LeetCode.medium.container_with_most_water_11 import Solution
 
-#     n = 100_000
-#     bank = Bank([1000] * n)  # 100k accounts, each with balance 1000
-#     operations = 200_000
-
-#     start = time.perf_counter()
-
-#     for _ in range(operations):
-#         op_type = random.choice(["deposit", "withdraw", "transfer"])
-#         a1 = random.randint(1, n)
-#         money = random.randint(1, 100)
-
-#         if op_type == "deposit":
-#             bank.deposit(a1, money)
-#         elif op_type == "withdraw":
-#             bank.withdraw(a1, money)
-#         else:  # transfer
-#             a2 = random.randint(1, n)
-#             bank.transfer(a1, a2, money)
-
-#     end = time.perf_counter()
-#     print(f"\nTotal time for {operations} ops on {n} accounts: {end - start:.3f}s")
+    solution = Solution()
+    assert solution.maxArea(height) == expected
