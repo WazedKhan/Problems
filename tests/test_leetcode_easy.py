@@ -114,3 +114,22 @@ def test_second_highest(s, expected):
 
     solution = Solution()
     assert solution.secondHighest(s) == expected
+
+
+@pytest.mark.parametrize(
+    "strs, expected",
+    [
+        (["flower", "flow", "flight"], "fl"),  # common prefix is "fl"
+        (["dog", "racecar", "car"], ""),  # no common prefix
+        (["a", "a", "a"], "a"),  # all same single character
+        (["ab", "a"], "a"),  # common prefix is "a"
+        ([], ""),  # empty list
+        (["single"], "single"),  # single string in the list
+        (["prefix", "pre", "pretest"], "pre"),  # common prefix is "pre"
+    ],
+)
+def test_longest_common_prefix(strs, expected):
+    from LeetCode.easy.longest_common_prefix_14 import Solution
+
+    solution = Solution()
+    assert solution.longestCommonPrefix(strs) == expected

@@ -1,5 +1,3 @@
-from tomlkit import value
-from LeetCode.TribonacciNumber import solution
 from LeetCode.lemonade_change import Solution
 
 bills_dict = {
