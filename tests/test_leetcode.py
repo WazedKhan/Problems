@@ -1,6 +1,6 @@
 from typing import List
 
-import pytest  # type: ignore
+import pytest
 
 # large input imports
 from ..inputs.simple_bank_system_2043 import large_input
