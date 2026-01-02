@@ -133,3 +133,28 @@ def test_longest_common_prefix(strs, expected):
 
     solution = Solution()
     assert solution.longestCommonPrefix(strs) == expected
+
+# https://leetcode.com/problems/n-repeated-element-in-size-2n-array/description/?envType=daily-question&envId=2026-01-02
+# 961. N-Repeated Element in Size 2N Array
+
+
+@pytest.mark.parametrize(
+    "nums, expected",
+    [
+        ([1, 2, 3, 3], 3),  # Example 1
+        ([2, 1, 2, 5, 3, 2], 2),  # Example 2
+        ([5, 1, 5, 2, 5, 3, 5, 4], 5),  # Example 3
+        ([1, 1], 1),  # Minimum size array
+        ([4, 4, 4, 4], 4),  # All elements are the same
+        ([1, 2, 3, 4, 5, 5], 5),  # Repeated element at the end
+        ([6, 7, 8, 9, 6, 6], 6),  # Repeated element at the beginning
+        ([10, 20, 10, 30, 10, 40], 10),  # Non-consecutive repeats
+        ([100, 200, 300, 100, 400, 100], 100),  # Larger numbers
+        ([0, 0, 0, 0], 0),  # All zeros
+    ],
+)
+def test_repeated_n_times(nums, expected):
+    from LeetCode.easy.n_repeated_element_961 import Solution
+
+    solution = Solution()
+    assert solution.repeatedNTimes(nums) == expected
