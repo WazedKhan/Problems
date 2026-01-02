@@ -4,6 +4,15 @@ from typing import List
 
 class Solution:
     def repeatedNTimes(self, nums: List[int]) -> int:
+        """
+        Finds the element that appears N times in an array of length 2N.
+        
+        Parameters:
+            nums (List[int]): An array of length 2N containing exactly one value repeated N times and the remaining N values distinct.
+        
+        Returns:
+            int: The value that appears N times in `nums`.
+        """
         seen_hash = {}  # this can solved with set as well
 
         for num in nums:
