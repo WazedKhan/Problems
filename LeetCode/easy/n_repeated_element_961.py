@@ -4,7 +4,7 @@ from typing import List
 
 class Solution:
     def repeatedNTimes(self, nums: List[int]) -> int:
-        seen_hash = {}
+        seen_hash = {}  # this can solved with set as well
 
         for num in nums:
             if num in seen_hash:
