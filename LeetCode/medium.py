@@ -34,4 +34,5 @@ class Solution:
                 if d in h_dist:
                     max_dist = max(d, max_dist)
 
-        return -1 if max_dist == 0 else (max_dist * max_dist) % 10**9 + 7
+        MOD = 10**9 + 7
+        return -1 if max_dist == 0 else (max_dist * max_dist) % MOD
