@@ -134,6 +134,7 @@ def test_longest_common_prefix(strs, expected):
     solution = Solution()
     assert solution.longestCommonPrefix(strs) == expected
 
+
 # https://leetcode.com/problems/n-repeated-element-in-size-2n-array/description/?envType=daily-question&envId=2026-01-02
 # 961. N-Repeated Element in Size 2N Array
 
@@ -158,3 +159,26 @@ def test_repeated_n_times(nums, expected):
 
     solution = Solution()
     assert solution.repeatedNTimes(nums) == expected
+
+
+# https://leetcode.com/problems/missing-number/description/
+# 268. Missing Number
+@pytest.mark.parametrize(
+    "nums, expected",
+    [
+        ([3, 0, 1], 2),
+        ([0, 1], 2),
+        ([9, 6, 4, 2, 3, 5, 7, 0, 1], 8),
+        ([0], 1),
+        ([1], 0),
+        ([0, 2], 1),
+        ([0, 1, 2, 3, 4, 5, 6, 7, 8], 9),
+        ([1, 2, 3, 4, 5, 6, 7, 8, 9], 0),
+        ([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 10),
+    ],
+)
+def test_missing_number(nums, expected):
+    from LeetCode.easy.missing_number_268 import Solution
+
+    solution = Solution()
+    assert solution.missingNumber(nums) == expected
