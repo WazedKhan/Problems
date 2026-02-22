@@ -3,7 +3,7 @@ from typing import List
 
 class Solution:
     """
-    
+
     price = [7,6,4,3,1]
     price = [7,1,5,3,6,4]
     price_3 = [2,7,1,5,4]
@@ -30,7 +30,7 @@ class Solution:
     update()
         if min_price > price then min_price = price
         if price - min_price > best_profit best_profit = min_price - price
-    
+
     update
     Day 0: price is 7 and min_price is 7 best_profit is 0
     update
@@ -51,33 +51,31 @@ class Solution:
         Boom! At the end, we return that
 
     """
+
     def bruteForceMaxProfit(self, prices: List[int]) -> int:
         best_profit = 0
         for i in range(len(prices)):
             for j in range(i + 1, len(prices)):
                 profit = prices[j] - prices[i]
-                
+
                 best_profit = max(best_profit, profit)
-        
+
         return best_profit
-    
+
     def maxProfit(self, prices: List[int]) -> int:
-        min_price = float('inf')
+        min_price = float("inf")
         best_profit = 0
 
         for price in prices:
             if price < min_price:
                 min_price = price
-            
+
             if price - min_price > best_profit:
                 best_profit = price - min_price
 
         return best_profit
 
 
-
-
-
-price_3 = [7,6,4,3,1]
+price_3 = [7, 6, 4, 3, 1]
 sol = Solution().maxProfit(price_3)
 print(f"Best profit: {sol}")

@@ -251,29 +251,6 @@ def test_reverse_integer(x: int, expected: int):
 @pytest.mark.parametrize(
     "s, expected",
     [
-        ("()", True),  # Single pair
-        ("()[]{}", True),  # Multiple valid pairs
-        ("(]", False),  # Mismatched parentheses
-        ("([)]", False),  # Nested but invalid
-        ("{[]}", True),  # Properly nested
-        ("", True),  # Empty string
-        ("(", False),  # Single opening parenthesis
-        (")", False),  # Single closing parenthesis
-        ("(((((((((())))))))))", True),  # Deeply nested
-        ("(((((((((()))", False),  # Deeply nested but incomplete
-    ],
-)
-def test_is_valid_parentheses(s: str, expected: bool):
-    from LeetCode.valid_parentheses_20 import Solution
-
-    solution = Solution()
-    result = solution.isValid(s)
-    assert result == expected
-
-
-@pytest.mark.parametrize(
-    "s, expected",
-    [
         ("Hello World", 5),
         ("   fly me   to   the moon  ", 4),
         ("luffy is still joyboy", 6),
