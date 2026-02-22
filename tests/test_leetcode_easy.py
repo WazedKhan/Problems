@@ -85,7 +85,7 @@ def test_generate(numRows, expected):
     ],
 )
 def test_max_profit(prices, expected):
-    from LeetCode.easy.best_time_buy_sell_stock_121 import Solution
+    from LeetCode.dump.best_time_buy_sell_stock_121 import Solution
 
     solution = Solution()
     assert solution.maxProfit(prices) == expected
@@ -182,3 +182,31 @@ def test_missing_number(nums, expected):
 
     solution = Solution()
     assert solution.missingNumber(nums) == expected
+
+
+@pytest.mark.parametrize(
+    "s, expected",
+    [
+        ("()", True),  # Single pair
+        ("()[]{}", True),  # Multiple valid pairs
+        ("(]", False),  # Mismatched parentheses
+        ("([)]", False),  # Nested but invalid
+        ("{[]}", True),  # Properly nested
+        ("", True),  # Empty string
+        ("(", False),  # Single opening parenthesis
+        (")", False),  # Single closing parenthesis
+        ("(((((((((())))))))))", True),  # Deeply nested
+        ("(((((((((()))", False),  # Deeply nested but incomplete
+    ],
+)
+def test_is_valid_parentheses(s: str, expected: bool):
+    from LeetCode.easy.valid_parentheses_20 import Solution as Sol
+    from LeetCode.valid_parentheses_20 import Solution
+
+    solution = Solution()
+    result = solution.isValid(s)
+    assert result == expected
+
+    sol = Sol()
+    res = sol.isValidByMapping(s)
+    assert res == expected
