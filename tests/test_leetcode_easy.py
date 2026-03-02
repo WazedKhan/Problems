@@ -182,3 +182,24 @@ def test_missing_number(nums, expected):
 
     solution = Solution()
     assert solution.missingNumber(nums) == expected
+
+
+@pytest.mark.parametrize(
+    "n, expected",
+    [
+        (1, 1),  # Base case
+        (2, 2),  # Base case
+        (3, 3),  # 1+1+1, 1+2, 2+1
+        (4, 5),  # Fibonacci pattern
+        (5, 8),
+        (6, 13),
+        (7, 21),
+        (8, 34),
+        (10, 89),  # Larger input
+    ],
+)
+def test_climb_stairs(n, expected):
+    from LeetCode.easy.climbing_stairs_70 import Solution
+
+    solution = Solution()
+    assert solution.climbStairs(n) == expected
