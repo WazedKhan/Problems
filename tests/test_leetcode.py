@@ -148,9 +148,11 @@ def test_longest_palindrome(input_string, expected_output):
 )
 def test_is_palindrome(input_value, expected):
     from LeetCode.is_palindrome import Solution
+    from recap.may_2026.easy import Solution as May2026Recap
 
     solution = Solution()
     assert solution.isPalindrome(input_value) == expected
+    assert May2026Recap().isPalindrome(input_value) == expected
 
 
 @pytest.mark.parametrize(
