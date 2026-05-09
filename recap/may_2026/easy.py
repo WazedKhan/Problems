@@ -101,3 +101,51 @@ class Solution:
             x = x // 10  # remove last digit from x
 
         return original == result
+
+    def romanToInt(self, s: str) -> int:
+        """
+        Details: https://leetcode.com/problems/roman-to-integer/description/
+
+        Understanding the Problem:
+        - We are given a Roman numeral string and need to convert it into an integer.
+
+        Finding a Solution:
+        - First things first: each Roman symbol has a fixed value, so we map them
+        using a dictionary.
+        - Then we go through each Roman symbol and decide whether to add or subtract
+        its value:
+            - If the current symbol is smaller than the next one, subtract it.
+            - If the current symbol is greater than or equal to the next one, add it.
+
+        - Let's walk through XIV:
+            - X: value=10, next is I=1. X > I, so add X → result = 10
+            - I: value=1,  next is V=5. V > I, so subtract I → result = 10 - 1 = 9
+            - V: value=5,  no next (out of bounds), so add V → result = 9 + 5 = 14 ✓
+
+        - Why do we operate against result instead of the next value directly?
+            Think of it this way — each symbol "announces" itself to result:
+            - X says: "my next is smaller, so add me" → result += 10
+            - I says: "my next is larger, so subtract me to balance" → result -= 1
+            - V says: "I have no next, so add me" → result += 5
+            It's a clean way to handle the subtraction rule in a single forward pass.
+
+        Steps:
+        - Create a map of Roman symbols to their integer values.
+        - Initialize result = 0.
+        - Iterate using index so we can look ahead to the next symbol.
+        - If current < next, subtract current from result.
+        - Otherwise, add current to result.
+        - Validate that the next index exists before accessing it to avoid index out of bounds.
+        - Return result at the end.
+        """
+        int_map = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+        result = 0
+
+        for index in range(len(s)):
+            current = int_map.get(s[index])
+            if index + 1 < len(s) and current < int_map.get(s[index + 1]):
+                result -= current
+            else:
+                result += current
+
+        return result

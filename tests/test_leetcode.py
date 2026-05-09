@@ -2,6 +2,9 @@ from typing import List
 
 import pytest  # type: ignore
 
+# recap imports
+from recap.may_2026.easy import Solution as May2026Recap
+
 # large input imports
 from ..inputs.simple_bank_system_2043 import large_input
 
@@ -148,7 +151,6 @@ def test_longest_palindrome(input_string, expected_output):
 )
 def test_is_palindrome(input_value, expected):
     from LeetCode.is_palindrome import Solution
-    from recap.may_2026.easy import Solution as May2026Recap
 
     solution = Solution()
     assert solution.isPalindrome(input_value) == expected
@@ -175,8 +177,12 @@ def test_is_palindrome(input_value, expected):
 def test_roman_to_int(roman, expected):
     from LeetCode.roman_to_int import Solution
 
-    solution = Solution()
-    assert solution.romanToInt(roman) == expected
+    result = Solution().romanToInt(roman)
+    assert result == expected, f"given: {roman}, expected: {expected}, got: {result}"
+
+    # recap may 2026
+    result = May2026Recap().romanToInt(roman)
+    assert result == expected, f"given: {roman}, expected: {expected}, got: {result}"
 
 
 @pytest.mark.parametrize("gift, k, expected", [([25, 64, 9, 4, 100], 4, 29), ([1, 1, 1, 1], 4, 4)])
