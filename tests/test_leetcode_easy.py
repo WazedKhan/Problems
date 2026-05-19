@@ -203,3 +203,15 @@ def test_climb_stairs(n, expected):
 
     solution = Solution()
     assert solution.climbStairs(n) == expected
+
+
+@pytest.mark.parametrize(
+    "nums1, nums2, expected",
+    [
+        ([1, 2, 3], [2, 4], 2),
+    ],
+)
+def test_minimum_common_value(nums1, nums2, expected):
+    from LeetCode.easy.mini_common_value_2540 import Solution
+
+    assert Solution().getCommon(nums1, nums2) == expected
