@@ -208,7 +208,13 @@ def test_climb_stairs(n, expected):
 @pytest.mark.parametrize(
     "nums1, nums2, expected",
     [
-        ([1, 2, 3], [2, 4], 2),
+        ([1, 2, 3], [2, 4], 2),  # common value exists
+        ([1, 2, 3], [4, 5, 6], -1),  # no common value
+        ([1], [1], 1),  # single element, match
+        ([1], [2], -1),  # single element, no match
+        ([1, 2, 3, 6], [2, 3, 4, 5], 2),  # multiple common values, return minimum
+        ([1, 1, 1], [1, 1, 1], 1),  # duplicates
+        ([1, 2, 3], [1, 2, 3], 1),  # identical arrays
     ],
 )
 def test_minimum_common_value(nums1, nums2, expected):
