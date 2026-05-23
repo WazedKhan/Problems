@@ -16,7 +16,3 @@ class Solution:
     def check(self, nums: List[int]) -> bool:
         break_point = self.find_break_point(nums)
         return break_point <= 1
-
-
-sol = Solution().check([2, 4, 1, 2, 4, 4])
-print("sol: ", sol)
