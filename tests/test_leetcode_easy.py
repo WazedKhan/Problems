@@ -206,18 +206,22 @@ def test_climb_stairs(n, expected):
 
 
 @pytest.mark.parametrize(
-    "nums1, nums2, expected",
+    "nums, expected",
     [
-        ([1, 2, 3], [2, 4], 2),  # common value exists
-        ([1, 2, 3], [4, 5, 6], -1),  # no common value
-        ([1], [1], 1),  # single element, match
-        ([1], [2], -1),  # single element, no match
-        ([1, 2, 3, 6], [2, 3, 4, 5], 2),  # multiple common values, return minimum
-        ([1, 1, 1], [1, 1, 1], 1),  # duplicates
-        ([1, 2, 3], [1, 2, 3], 1),  # identical arrays
+        ([3, 4, 5, 1, 2], True),  # rotated at index 2
+        ([2, 1, 3, 4], False),  # not a valid rotation
+        ([1, 2, 3], True),  # already sorted, no rotation
+        ([2, 2, 2, 1, 2], True),  # duplicates, valid rotation
+        ([3, 5, 1, 4, 2], False),  # two break points, invalid
+        ([10, 1, 1, 10], True),  # duplicates at boundaries
+        ([1], True),  # single element
+        ([1, 1, 1], True),  # all duplicates
+        ([3, 1, 2, 4, 5], False),  # break point but left part invalid
+        ([1, 2, 3, 4, 5], True),  # fully sorted
+        ([2, 4, 1, 2, 4, 4], False),  # leetCode 106 test case
     ],
 )
-def test_minimum_common_value(nums1, nums2, expected):
-    from LeetCode.easy.mini_common_value_2540 import Solution
+def test_check_if_sorted_and_rotated(nums, expected):  # rotated
+    from LeetCode.easy.array_sorted_rotated_1752 import Solution
 
-    assert Solution().getCommon(nums1, nums2) == expected
+    assert Solution().check(nums) == expected
