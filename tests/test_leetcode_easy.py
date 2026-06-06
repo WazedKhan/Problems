@@ -243,3 +243,21 @@ def test_check_if_sorted_and_rotated(nums, expected):  # rotated
     from LeetCode.easy.array_sorted_rotated_1752 import Solution
 
     assert Solution().check(nums) == expected
+
+
+@pytest.mark.parametrize(
+    "s, t, expected",
+    [
+        ("anagram", "nagaram", True),  # basic valid anagram
+        ("rat", "car", False),  # different characters
+        ("", "", True),  # empty strings
+        ("a", "a", True),  # single character
+        ("ab", "a", False),  # different lengths
+        ("listen", "silent", True),  # common anagram
+    ],
+)
+def test_valid_anagram(s, t, expected):
+    from LeetCode.easy.valid_anagram_242 import Solution
+
+    result = Solution().isAnagram(s, t)
+    assert result == expected, f"expected: {expected}, but got: {result}"
