@@ -47,6 +47,43 @@ def test_product_except_self(nums, expected):
     assert result == expected, f"Expected {expected}, but got {result}"
 
 
+@pytest.mark.parametrize(
+    "strs, expected",
+    [
+        (
+            ["eat", "tea", "tan", "ate", "nat", "bat"],
+            [["eat", "tea", "ate"], ["tan", "nat"], ["bat"]],
+        ),
+        (
+            [""],
+            [[""]],
+        ),
+        (
+            ["a"],
+            [["a"]],
+        ),
+        (
+            ["abc", "bca", "cab"],
+            [["abc", "bca", "cab"]],
+        ),
+        (
+            ["abc", "def", "ghi"],
+            [["abc"], ["def"], ["ghi"]],
+        ),
+    ],
+)
+def test_group_anagram(strs, expected):
+    from LeetCode.medium.group_anagrams_49 import Solution
+
+    result = Solution().groupAnagrams(strs)
+
+    # Order of groups and order within groups do not matter
+    normalized_result = sorted([sorted(group) for group in result])
+    normalized_expected = sorted([sorted(group) for group in expected])
+
+    assert normalized_result == normalized_expected
+
+
 # 05: Longest Palindromic Substring
 # https://leetcode.com/problems/longest-palindromic-substring/?envType=problem-list-v2&envId=hash-table
 
