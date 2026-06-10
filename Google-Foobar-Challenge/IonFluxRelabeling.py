@@ -22,13 +22,14 @@ def getfluxconverters(h, index):
                 result = my_node
                 break
 
-            if (index > left_node):
+            if index > left_node:
                 node_offset = left_node
 
         return result
 
+
 def answer(h, q):
-    return [ getfluxconverters(h, x) for x in q ]
+    return [getfluxconverters(h, x) for x in q]
 
 
 print(answer(3, [7, 3, 5, 1]))
