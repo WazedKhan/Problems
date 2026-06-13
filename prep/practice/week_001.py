@@ -16,13 +16,20 @@ class Solution:
         if len(s) != len(t):
             return False
 
-        s_bucket = dict()
-        t_bucket = dict()
+        bucket = dict()
+        for ch in s:
+            bucket[ch] = bucket.get(ch, 0) + 1
 
-        for i in s:
-            s_bucket[i] = s_bucket.get(i, 0) + 1
+        for ch in t:
+            if ch in bucket:
+                bucket[ch] -= 1
+                if bucket[ch] == 0:
+                    bucket.pop(ch)
 
-        for i in t:
-            t_bucket[i] = t_bucket.get(i, 0) + 1
+        if bucket:
+            return False
 
-        return s_bucket == t_bucket
+        return True
+
+
+Solution().isAnagram(s="anagram", t="nagaram")
