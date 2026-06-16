@@ -45,3 +45,14 @@ class Solution:
             postfix = nums[podx] * postfix
 
         return output
+
+    def maxProfit(self, prices: List[int]) -> int:
+        profit = 0
+        min_buy_p = prices[0]
+
+        for price in prices:
+            profit = max(profit, price - min_buy_p)
+            if min_buy_p > price:
+                min_buy_p = price
+
+        return profit
