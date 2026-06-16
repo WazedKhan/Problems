@@ -261,3 +261,54 @@ def test_valid_anagram(s, t, expected):
 
     result = Solution().isAnagram(s, t)
     assert result == expected, f"expected: {expected}, but got: {result}"
+
+
+# https://leetcode.com/problems/valid-palindrome/description/
+# 125. Valid Palindrome
+@pytest.mark.parametrize(
+    "s, expected",
+    [
+        # LeetCode provided examples
+        ("A man, a plan, a canal: Panama", True),  # classic palindrome with spaces and punctuation
+        ("race a car", False),  # not a palindrome
+        (" ", True),  # single space → no alphanumeric chars, treated as palindrome
+        # Empty / blank strings
+        ("", True),  # empty string is a palindrome
+        # Single characters
+        ("a", True),  # single alphanumeric
+        ("1", True),  # single digit
+        ("!", True),  # single non-alphanumeric
+        # Case insensitivity
+        ("AbA", True),  # mixed case palindrome
+        ("AbBa", True),  # mixed case with two distinct letters
+        ("AbC", False),  # mixed case non-palindrome
+        # Digits
+        ("12321", True),  # numeric palindrome
+        ("12345", False),  # numeric non-palindrome
+        ("1a1", True),  # digit-alpha-digit palindrome
+        # Non-alphanumeric at boundaries
+        (".,racecar,.", True),  # palindrome surrounded by punctuation
+        (".,raceacar,.", False),  # non-palindrome surrounded by punctuation
+        # Only non-alphanumeric characters
+        ("!@#$%", True),  # all punctuation → no alphanumeric to compare
+        # Two character cases
+        ("aa", True),  # two identical chars
+        ("ab", False),  # two different chars
+        ("a.", True),  # one alphanumeric, one non-alphanumeric
+        # Mixed alphanumeric
+        ("A1b2B1a", True),  # alphanumeric palindrome with mixed types
+        ("0P", False),  # digit and letter, not palindrome
+        # Longer strings
+        ("Was it a car or a cat I saw?", True),  # longer palindrome phrase
+        ("No lemon, no melon", True),  # palindrome with spaces and comma
+        ("Not a palindrome at all", False),  # clearly not a palindrome
+        # Boundary: non-alphanumeric on one side only
+        (".a.", True),  # non-alpha on both sides wrapping a single char
+        (".ab.", False),  # non-alpha wrapper, 'a' != 'b'
+    ],
+)
+def test_is_palindrome_125(s, expected):
+    from LeetCode.easy.is_palindrome_125 import Solution
+
+    result = Solution().isPalindrome(s)
+    assert result == expected, f"isPalindrome({s!r}) expected {expected}, got {result}"
