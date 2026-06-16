@@ -36,3 +36,38 @@ def test_two_sum(nums: List[int], target: int, expected: List[int]):
 def test_valid_anagram(s, t, expected):
     result = Solution().isAnagram(s, t)
     assert result == expected, f"expected: {expected}, but got: {result}"
+
+
+# @pytest.mark.parametrize(
+#     "prices, expected",
+#     [
+#         ([7, 1, 5, 3, 6, 4], 5),  # Buy at 1, sell at 6
+#         ([7, 6, 4, 3, 1], 0),  # Prices only go down, no profit
+#         ([2, 7, 1, 5, 4], 5),  # Buy at 2, sell at 7
+#         ([1, 2], 1),  # Smallest input with a profit
+#         ([2, 1, 2, 1, 2], 1),  # Multiple valleys and peaks
+#         ([3, 3, 3, 3, 3], 0),  # All same prices
+#         ([1], 0),  # Only one day
+#     ],
+# )
+# def test_max_profit(prices, expected):
+#     assert Solution().maxProfit(prices) == expected
+
+
+@pytest.mark.parametrize(
+    "nums, expected",
+    [
+        ([1, 2, 3, 4], [24, 12, 8, 6]),  # basic case
+        ([0, 1, 2, 3], [6, 0, 0, 0]),  # one zero
+        ([0, 0, 2, 3], [0, 0, 0, 0]),  # two zeros
+        ([-1, 1, 0, -3, 3], [0, 0, 9, 0, 0]),  # LeetCode example
+        ([2, 3], [3, 2]),  # minimum valid length
+        ([1, 1, 1, 1], [1, 1, 1, 1]),  # all ones
+        ([-1, -2, -3, -4], [-24, -12, -8, -6]),  # all negatives
+        ([5, 2, 1], [2, 5, 10]),  # small array
+    ],
+)
+def test_product_except_self(nums, expected):
+    result = Solution().productExceptSelf(nums)
+
+    assert result == expected, f"Expected {expected}, but got {result}"

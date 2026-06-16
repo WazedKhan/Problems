@@ -31,5 +31,20 @@ class Solution:
 
         return True
 
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        nums_len = len(nums)
+        prefix, postfix = [None] * nums_len, [None] * nums_len
+        output = []
 
-Solution().isAnagram(s="anagram", t="nagaram")
+        prefix[0] = 1
+        for prdx in range(1, nums_len):
+            prefix[prdx] = prefix[prdx - 1] * nums[prdx - 1]
+
+        postfix[-1] = 1
+        for podx in range(nums_len - 2, -1, -1):
+            postfix[podx] = postfix[podx + 1] * nums[podx + 1]
+
+        for idx in range(nums_len):
+            output.append(prefix[idx] * postfix[idx])
+
+        return output
