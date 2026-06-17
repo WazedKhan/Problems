@@ -84,6 +84,58 @@ def test_group_anagram(strs, expected):
     assert normalized_result == normalized_expected
 
 
+@pytest.mark.parametrize(
+    "nums, expected",
+    [
+        (
+            [-1, 0, 1, 2, -1, -4],
+            [[-1, -1, 2], [-1, 0, 1]],
+        ),
+        (
+            [0, 1, 1],
+            [],
+        ),
+        (
+            [0, 0, 0],
+            [[0, 0, 0]],
+        ),
+        (
+            [0, 0, 0, 0],
+            [[0, 0, 0]],
+        ),
+        (
+            [-2, 0, 0, 2, 2],
+            [[-2, 0, 2]],
+        ),
+        (
+            [1, 2, -2, -1],
+            [],
+        ),
+        (
+            [-1, -1, -1, 2, 2],
+            [[-1, -1, 2]],
+        ),
+        (
+            [1, 2, 0, 1, 0, 0, 0, 0],
+            [[0, 0, 0]],
+        ),
+        (
+            [-100, -70, -60, 110, 120, 130, 160],
+            [[-100, -60, 160], [-70, -60, 130]],
+        ),
+    ],
+)
+def test_three_sum(nums, expected):
+    from LeetCode.medium.three_sum_15 import Solution
+
+    result = Solution().threeSum(nums)
+
+    normalized_result = sorted([sorted(triplet) for triplet in result])
+    normalized_expected = sorted([sorted(triplet) for triplet in expected])
+
+    assert normalized_result == normalized_expected
+
+
 # 05: Longest Palindromic Substring
 # https://leetcode.com/problems/longest-palindromic-substring/?envType=problem-list-v2&envId=hash-table
 
