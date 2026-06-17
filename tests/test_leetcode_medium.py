@@ -84,6 +84,25 @@ def test_group_anagram(strs, expected):
     assert normalized_result == normalized_expected
 
 
+@pytest.mark.parametrize(
+    "numbers, target, expected",
+    [
+        ([2, 7, 11, 15], 9, [1, 2]),
+        ([2, 3, 4], 6, [1, 3]),
+        ([-1, 0], -1, [1, 2]),
+        ([1, 2, 3, 4, 4, 9], 8, [4, 5]),
+        ([-5, -3, 0, 2, 4, 8], 5, [2, 6]),
+        ([1, 3, 5, 7, 9], 16, [4, 5]),
+    ],
+)
+def test_two_sum(numbers, target, expected):
+    from LeetCode.medium.two_sum_two_167 import Solution
+
+    result = Solution().twoSum(numbers, target)
+
+    assert result == expected
+
+
 # 05: Longest Palindromic Substring
 # https://leetcode.com/problems/longest-palindromic-substring/?envType=problem-list-v2&envId=hash-table
 
