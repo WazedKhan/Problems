@@ -13,7 +13,3 @@ class Solution:
             else:
                 left += 1
         return
-
-
-sol = Solution().twoSum([2, 7, 11, 15], 9)
-print(sol)
