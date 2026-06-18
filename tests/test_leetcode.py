@@ -469,6 +469,10 @@ def test_min_number_operations(target, expected):
 )
 def test_max_area(height, expected):
     from LeetCode.medium.container_with_most_water_11 import Solution
+    from LeetCode.medium.max_area_11 import Solution as MaxSolution
 
     solution = Solution()
     assert solution.maxArea(height) == expected
+
+    sol = MaxSolution().maxArea(height)
+    assert sol == expected, f"expected: {expected} but got: {sol}"
