@@ -155,6 +155,25 @@ def test_three_sum(nums, expected):
     assert normalized_result == normalized_expected
 
 
+@pytest.mark.parametrize(
+    "nums, target, expected",
+    [
+        ([-1, 2, 1, -4], 1, 2),
+        ([0, 0, 0], 1, 0),
+        ([0, 0, 0], 0, 0),
+        ([1, 1, 1, 0], -100, 2),
+        ([1, 1, -1, -1, 3], -1, -1),
+        ([-3, -2, -5, 3, -4], -1, -2),
+        ([4, 0, 5, -5, 3, 3, 0, -4, -5], -2, -2),
+    ],
+)
+def test_three_sum_closest(nums, target, expected):
+    from LeetCode.medium.three_sum_closest_16 import Solution
+
+    result = Solution().threeSumClosest(nums, target)
+    assert result == expected, f"expected: {expected} but got: {result}"
+
+
 # 05: Longest Palindromic Substring
 # https://leetcode.com/problems/longest-palindromic-substring/?envType=problem-list-v2&envId=hash-table
 
