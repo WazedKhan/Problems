@@ -174,6 +174,31 @@ def test_three_sum_closest(nums, target, expected):
     assert result == expected, f"expected: {expected} but got: {result}"
 
 
+@pytest.mark.parametrize(
+    "nums, expected",
+    [
+        ([100, 4, 200, 1, 3, 2], 4),
+        ([0, 3, 7, 2, 5, 8, 4, 6, 0, 1], 9),
+        ([1], 1),
+        ([], 0),
+        ([1, 2, 3, 4, 5], 5),
+        ([5, 4, 3, 2, 1], 5),
+        ([1, 1, 1, 1], 1),
+        ([1, 2, 0, 1], 3),
+        ([-1, 0, 1, 2], 4),
+        ([-2, -1, 0, 1, 2], 5),
+        ([10, 30, 20, 40], 1),
+        ([9, 1, 4, 7, 3, -1, 0, 5, 8, -1, 6], 7),
+    ],
+)
+def test_longest_consecutive(nums, expected):
+    from LeetCode.medium.longest_consecutive_128 import Solution
+
+    result = Solution().longestConsecutive(nums)
+
+    assert result == expected
+
+
 # 05: Longest Palindromic Substring
 # https://leetcode.com/problems/longest-palindromic-substring/?envType=problem-list-v2&envId=hash-table
 
