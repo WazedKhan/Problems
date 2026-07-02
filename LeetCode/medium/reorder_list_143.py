@@ -8,14 +8,6 @@ class ListNode:
 
 
 class Solution:
-
-    def print_linked_list(self, head):
-        current = head
-        while current is not None:
-            print(current.val, end="")
-            current = current.next
-        print()
-
     def reorderList(self, head: Optional[ListNode]) -> None:
         slow, fast = head, head
 
