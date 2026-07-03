@@ -48,10 +48,12 @@ class Solution:
         return dummy.next
 
     def hasCycle(self, head: Optional[ListNode]) -> bool:
-        seen = set()
-        while head:
-            if head in seen:
+        tortoise, hare = head, head
+
+        while hare and hare.next:
+            tortoise = tortoise.next
+            hare = hare.next.next
+            if tortoise == hare:
                 return True
-            seen.add(head)
-            head = head.next
+
         return False
