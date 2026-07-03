@@ -57,3 +57,22 @@ class Solution:
                 return True
 
         return False
+
+    def list_len(self, head: Optional[ListNode]) -> int:
+        current = head
+        count = 0
+        while current:
+            count += 1
+            current = current.next
+        return count
+
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        pos = self.list_len(head) - n
+        dummy = ListNode(0)
+        dummy.next = head
+        current = dummy
+
+        for _ in range(pos):
+            current = current.next
+        current.next = current.next.next
+        return dummy.next
