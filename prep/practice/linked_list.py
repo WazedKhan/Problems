@@ -76,3 +76,28 @@ class Solution:
             current = current.next
         current.next = current.next.next
         return dummy.next
+
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        slow, fast = head, head
+
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        half = slow.next
+        slow.next = None
+
+        prev = None
+        while half:
+            next_node = half.next
+            half.next = prev
+            prev = half
+            half = next_node
+
+        while head and prev:
+            nxt_head = head.next
+            head.next = prev
+            nxt_prev = prev.next
+            prev.next = nxt_head
+
+            head = nxt_head
+            prev = nxt_prev
