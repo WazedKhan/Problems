@@ -269,14 +269,18 @@ def test_reverse_integer(x: int, expected: int):
         (")", False),  # Single closing parenthesis
         ("(((((((((())))))))))", True),  # Deeply nested
         ("(((((((((()))", False),  # Deeply nested but incomplete
+        (")(", False),
     ],
 )
 def test_is_valid_parentheses(s: str, expected: bool):
+    from LeetCode.easy.is_valid_20 import Solution as Sol
     from LeetCode.valid_parentheses_20 import Solution
 
     solution = Solution()
     result = solution.isValid(s)
+    res = Sol().isValid(s)
     assert result == expected
+    assert res == expected, f'expected {expected} but got {res} for "{s}"'
 
 
 @pytest.mark.parametrize(
