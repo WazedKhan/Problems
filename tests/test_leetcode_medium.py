@@ -199,6 +199,32 @@ def test_longest_consecutive(nums, expected):
     assert result == expected
 
 
+@pytest.mark.parametrize(
+    "tokens, expected",
+    [
+        (["2", "1", "+", "3", "*"], 9),
+        (["4", "13", "5", "/", "+"], 6),
+        (
+            ["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"],
+            22,
+        ),
+        (["3"], 3),
+        (["5", "1", "2", "+", "4", "*", "+", "3", "-"], 14),
+        (["-2", "3", "+"], 1),
+        (["7", "-3", "/"], -2),  # truncates toward zero
+        (["18", "3", "/"], 6),
+        (["2", "3", "*"], 6),
+        (["8", "2", "-"], 6),
+    ],
+)
+def test_eval_rpn(tokens, expected):
+    from LeetCode.medium.evalRPN_150 import Solution
+
+    result = Solution().evalRPN(tokens)
+
+    assert result == expected, f"expected: {expected}, but got: {result}, input: {tokens}"
+
+
 # 05: Longest Palindromic Substring
 # https://leetcode.com/problems/longest-palindromic-substring/?envType=problem-list-v2&envId=hash-table
 
