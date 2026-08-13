@@ -225,6 +225,23 @@ def test_eval_rpn(tokens, expected):
     assert result == expected, f"expected: {expected}, but got: {result}, input: {tokens}"
 
 
+@pytest.mark.parametrize(
+    "temperatures, expected",
+    [
+        ([73, 74, 75, 71, 69, 72, 76, 73], [1, 1, 4, 2, 1, 1, 0, 0]),
+        ([30, 40, 50, 60], [1, 1, 1, 0]),
+        ([30, 60, 90], [1, 1, 0]),
+        ([73, 75, 71, 69, 72], [1, 0, 2, 1, 0]),
+    ],
+)
+def test_daily_temperatures(temperatures, expected):
+    from LeetCode.medium.daily_temperatures_739 import Solution
+
+    res = Solution().dailyTemperatures(temperatures)
+
+    assert res == expected, f"expected {expected}, but got {res}, input: {temperatures}"
+
+
 # 05: Longest Palindromic Substring
 # https://leetcode.com/problems/longest-palindromic-substring/?envType=problem-list-v2&envId=hash-table
 
